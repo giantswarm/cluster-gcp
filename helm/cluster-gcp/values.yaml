@@ -27,7 +27,7 @@ controlPlane:
   rootVolumeSizeGB: 120
 
 machineDeployments:
-- name: def00 
+- name: def00
   failureDomain: europe-west6-a
   instanceType: n1-standard-2
   replicas: 3
