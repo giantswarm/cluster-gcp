@@ -6,4 +6,4 @@
 ---
 {{- include "bastion" . }}
 ---
-{{- include "machine-pools" . }}
+{{- include "machine-deployments" . }}
