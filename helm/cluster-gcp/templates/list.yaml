@@ -1,6 +1,6 @@
 {{- include "cluster" . }}
 ---
-{{- include "gcp-cluster" . }}
+##{{- include "gcp-cluster" . }}
 ##---
 ##{{- include "control-plane" . }}
 ##---
