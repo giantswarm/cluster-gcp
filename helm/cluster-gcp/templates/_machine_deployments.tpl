@@ -50,16 +50,9 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate
 metadata:
   labels:
-    giantswarm.io/machine-pool: {{ .name }}
+    giantswarm.io/machine-deployment: {{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
   name: {{ .name }}
   namespace: {{ $.Release.Namespace }}
-spec:
-  template
-    spec:
-      joinConfiguration:
-        nodeRegistration:
-          kubeletExtraArgs:
-            cloud-provider: gce
 {{ end }}
 {{- end -}}
