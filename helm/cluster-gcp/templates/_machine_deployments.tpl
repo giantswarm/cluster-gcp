@@ -1,0 +1,77 @@
+{{- define "machine-deployments" }}
+{{ $global := . }}
+{{ range .Values.machineDeployments }}
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  annotations:
+    machine-pool.giantswarm.io/name: {{ .name }}
+  labels:
+    giantswarm.io/machine-pool: {{ .name }}
+    {{- include "labels.common" $ | nindent 4 }}
+  name: {{ .name }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  clusterName: {{ include "resource.default.name" $ }}
+  replicas: {{ .replicas }}
+  selector:
+    matchLabels: null
+  template:
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: KubeadmConfigTemplate
+          name: {{ .name }}
+      clusterName: {{ include "resource.default.name" $ }}
+      failureDomain: {{ .failureDomain }}
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: GCPMachineTemplate
+        name: {{ .name }}
+      version: {{ $.Values.kubernetesVersion }}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: GCPMachineTemplate
+metadata:
+  labels:
+    giantswarm.io/machine-pool: {{ .name }}
+    {{- include "labels.common" $ | nindent 4 }}
+  name: {{ .name }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  template:
+    spec:
+      image: {{ $global.Values.gcp.baseImage }}
+      instanceType: {{ .instanceType }}
+      rootDeviceSize: {{ .rootVolumeSizeGB }}
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+kind: KubeadmConfigTemplate
+metadata:
+  labels:
+    giantswarm.io/machine-pool: {{ .name }}
+    {{- include "labels.common" $ | nindent 4 }}
+  name: {{ .name }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  template
+    spec:
+      joinConfiguration:
+        discovery: {}
+        nodeRegistration:
+          kubeletExtraArgs:
+            cloud-provider: gce
+            healthz-bind-address: 0.0.0.0
+            image-pull-progress-deadline: 1m
+            node-ip: '{{ `{{ ds.meta_data.local_ipv4 }}` }}'
+            node-labels: role=worker,giantswarm.io/machine-pool={{ .name }},{{- join "," .customNodeLabels }}
+        v: "2"
+          name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+      postKubeadmCommands:
+      {{- include "sshPostKubeadmCommands" . | nindent 6 }}
+      users:
+      {{- include "sshUsers" . | nindent 6 }}
+---
+{{ end }}
+{{- end -}}
