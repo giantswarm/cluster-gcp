@@ -2,4 +2,4 @@ apiVersion: v2
 name: cluster-gcp
 description: A helm chart for creating Cluster API clusters with the GCP infrastructure provider (CAPG).
 type: application
-version: "[[ .Version ]]"
+version: [[ .Version ]]
