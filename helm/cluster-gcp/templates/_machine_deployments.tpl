@@ -5,9 +5,9 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
   annotations:
-    machine-pool.giantswarm.io/name: {{ .name }}
+    machine-deployment.giantswarm.io/name: {{ .name }}
   labels:
-    giantswarm.io/machine-pool: {{ .name }}
+    giantswarm.io/machine-deployment: {{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
   name: {{ .name }}
   namespace: {{ $.Release.Namespace }}
@@ -66,7 +66,7 @@ spec:
             image-pull-progress-deadline: 1m
             node-ip: '{{ `{{ ds.meta_data.local_ipv4 }}` }}'
             node-labels: role=worker,giantswarm.io/machine-pool={{ .name }},{{- join "," .customNodeLabels }}
-        v: "2"
+            v: "2"
           name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
       postKubeadmCommands:
       {{- include "sshPostKubeadmCommands" . | nindent 6 }}
