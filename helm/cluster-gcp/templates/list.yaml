@@ -1,9 +1,9 @@
-##{{- include "cluster" . }}
-##---
-##{{- include "gcp-cluster" . }}
-##---
-##{{- include "control-plane" . }}
-##---
-##{{- include "bastion" . }}
-##---
-##{{- include "machine-deployments" . }}
+{{- include "cluster" . }}
+---
+{{- include "gcp-cluster" . }}
+---
+{{- include "control-plane" . }}
+---
+{{- include "bastion" . }}
+---
+{{- include "machine-deployments" . }}
