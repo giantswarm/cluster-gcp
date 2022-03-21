@@ -2,3 +2,5 @@
 ---
 {{- include "gcp-cluster" . }}
 ---
+{{- include "control-plane" . }}
+---
