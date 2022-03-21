@@ -12,8 +12,7 @@ metadata:
 spec:
   clusterNetwork:
     pods:
-      cidrBlocks: 
-      - test
+      cidrBlocks: {{ .Values.network.podCidr }}
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: KubeadmControlPlane
