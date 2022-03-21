@@ -1,2 +1,4 @@
 {{- include "cluster" . }}
 ---
+{{- include "gcp-cluster" . }}
+---
