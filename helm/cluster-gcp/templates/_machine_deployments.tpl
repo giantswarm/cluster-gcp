@@ -58,7 +58,6 @@ spec:
   template
     spec:
       joinConfiguration:
-        discovery: {}
         nodeRegistration:
           kubeletExtraArgs:
             cloud-provider: gce
