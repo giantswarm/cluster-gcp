@@ -8,8 +8,9 @@ gcp:
   region: "europe-west6"
   project: "capi-test-phoenix"
   failureDomains:
-    - "europe-west6-a"
-  additionalLabels: null
+  - "europe-west6-a"
+  additionalLabels:
+    test: test
 
 network:
   autoCreateSubnetworks: true
