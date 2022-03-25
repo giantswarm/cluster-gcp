@@ -13,5 +13,4 @@ spec:
   region: {{ .Values.gcp.region }}
   project: {{ .Values.gcp.project }}
   failureDomains: {{ .Values.gcp.failureDomains }}
-  additionalLabels: {{ .Values.gcp.additionalLabels }}
 {{ end }}
