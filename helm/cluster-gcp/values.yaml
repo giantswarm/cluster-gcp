@@ -1,6 +1,6 @@
 clusterDescription: "test"  # Cluster description used in metadata.
 organization: "test"  # Organization in which to create the cluster.
-kubernetesVersion: 1.22.7
+kubernetesVersion: 1.21.11
 releaseVersion: 20.0.0-alpha1
 
 gcp:
@@ -8,8 +8,7 @@ gcp:
   region: "europe-west6"
   project: "capi-test-phoenix"
   failureDomains:
-    - "europe-west6-a"
-  additionalLabels: null
+  - "europe-west6-a"
 
 network:
   autoCreateSubnetworks: true

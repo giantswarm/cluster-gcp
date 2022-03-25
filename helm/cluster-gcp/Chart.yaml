@@ -3,3 +3,8 @@ name: cluster-gcp
 description: A helm chart for creating Cluster API clusters with the GCP infrastructure provider (CAPG).
 type: application
 version: [[ .Version ]]
+annotations:
+  application.giantswarm.io/team: "phoenix"
+restrictions:
+  compatibleProviders:
+    - gcp
