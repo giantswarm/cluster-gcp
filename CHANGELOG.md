@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.1] - 2022-03-25
 
+- Remove unused labels for `release` and `watch-filter`.
+
 ## [0.1.0]
 
 [Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.1.1...HEAD
