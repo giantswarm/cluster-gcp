@@ -1,3 +1,4 @@
+clusterName: ""  # Name of cluster. Used as base name for all cluster resources in the management cluster.
 clusterDescription: "test"  # Cluster description used in metadata.
 organization: "test"  # Organization in which to create the cluster.
 kubernetesVersion: 1.20.10
