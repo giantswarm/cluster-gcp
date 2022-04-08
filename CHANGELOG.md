@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Use `.Chart.Version` instead of `.Chart.AppVersion` to get correct `app.kubernetes.io/version` label on resources.
+- Use same kubernetes version that is used in the OS images.
+- Use new `.clusterName` value as the base name of resources instead of `.Release.Name` to keep names cleaner.
+
 ## [0.2.0] - 2022-04-07
 
 ### Added
