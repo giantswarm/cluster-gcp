@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Recreate coredns deployment ready for app to overwrite rather than deleting completely
+
 ## [0.3.0] - 2022-04-08
 
 ### Changed
