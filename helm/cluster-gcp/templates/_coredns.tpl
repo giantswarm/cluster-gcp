@@ -198,6 +198,9 @@ data:
     - apiGroups: [""]
       resources: ["services"]
       verbs: ["create"]
+    - apiGroups: ["apps"]
+      resources: ["deployments"]
+      verbs: ["create"]
     - apiGroups: ["extensions"]
       resources: ["podsecuritypolicies"]
       resourceNames: ["coredns-adopter"]
@@ -244,13 +247,14 @@ data:
         kubernetes.io/description: |
           Runs at cluster creation to label and annotate default CoreDNS resources so they can be managed by Helm
     spec:
+      backoffLimit: 0
       template:
         metadata:
           name: coredns-adopter
           labels:
             {{- include "labels.common" $ | nindent 8 }}
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           serviceAccountName: coredns-adopter
           tolerations:
           - operator: Exists
@@ -287,11 +291,19 @@ data:
                 kubectl label --overwrite ${RESOURCE} app.kubernetes.io/managed-by=Helm
               done
 
-              kubectl -n kube-system get service kube-dns -o yaml | sed 's/  name: kube-dns/  name: coredns/' > /tmp/svc.yaml
+              kubectl -n kube-system get service kube-dns -o yaml \
+                | sed 's/  name: kube-dns/  name: coredns/' \
+                | sed 's/  k8s-app: kube-dns/  k8s-app: coredns/' \
+                | tee /tmp/svc.yaml
               kubectl -n kube-system delete service kube-dns
               kubectl apply -f /tmp/svc.yaml
 
+              kubectl -n kube-system get deployment coredns -o yaml \
+                | sed 's/  k8s-app: kube-dns/  k8s-app: coredns/' \
+                | sed 's/  containerPort: 53/  containerPort: 1053/' \
+                | tee /tmp/dep.yaml
               kubectl -n kube-system delete deployment coredns
+              kubectl apply -f /tmp/dep.yaml
 
 ---
 
