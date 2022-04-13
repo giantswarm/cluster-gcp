@@ -1,7 +1,9 @@
-clusterName: ""  # Name of cluster. Used as base name for all cluster resources in the management cluster.
-clusterDescription: "test"  # Cluster description used in metadata.
-organization: "test"  # Organization in which to create the cluster.
+clusterDescription: ""  # Cluster description used in metadata.
 kubernetesVersion: 1.20.10
+
+global:
+  clusterName: ""  # Name of cluster. Used as base name for all cluster resources in the management cluster.
+  organization: ""  # Organization in which to create the cluster.
 
 gcp:
   baseImage: "https://www.googleapis.com/compute/v1/projects/capi-test-phoenix/global/images/cluster-api-ubuntu-1804-v1-20-10-1642604275"
@@ -36,8 +38,3 @@ machineDeployments:
   - label=default
 
 sshSSOPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"
-
-kubectlImage:
-  registry: quay.io
-  name: giantswarm/kubectl
-  tag: 1.23.5
