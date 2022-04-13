@@ -1,4 +1,8 @@
 ---
+{{- include "coredns" . }}
+---
+{{- include "psps" . }}
+---
 {{- include "cluster" . }}
 ---
 {{- include "gcp-cluster" . }}
