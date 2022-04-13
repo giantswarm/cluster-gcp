@@ -1,6 +1,3 @@
-{{- include "shared.default-psps" . }}
----
-{{- include "shared.coredns-adopter" . }}
 ---
 {{- include "cluster" . }}
 ---
