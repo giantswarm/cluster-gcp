@@ -37,13 +37,16 @@ spec:
         {{- include "labels.common" $ | nindent 8 }}
     spec:
       bootstrap:
-        dataSecretName: {{ include "resource.default.name" $ }}-bastion-ignition
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: KubeadmConfigTemplate
+          name: {{ include "resource.default.name" $ }}-bastion
       clusterName: {{ include "resource.default.name" $ }}
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
         name: {{ include "resource.default.name" $ }}-bastion
-      version: v0.0.0
+      version: {{ .Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: GCPMachineTemplate
@@ -63,4 +66,23 @@ spec:
       instanceType: {{ .Values.bastion.instanceType }}
       publicIP: true
       image: {{ .Values.bastion.image }}
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+kind: KubeadmConfigTemplate
+metadata:
+  labels:
+    cluster.x-k8s.io/role: bastion
+    {{- include "labels.common" $ | nindent 4 }}
+  name: {{ include "resource.default.name" $ }}-bastion
+  namespace: {{ $.Release.Namespace }}
+spec:
+  template:
+    spec:
+      preKubeadmCommands:
+      {{- include "sshPostKubeadmCommands" $ | nindent 6 }}
+      - sleep infinity
+      files:
+      {{- include "sshFilesBastion" $ | nindent 6 }}
+      users:
+      {{- include "sshUsers" . | nindent 6 }}
 {{- end -}}
