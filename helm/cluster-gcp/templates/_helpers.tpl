@@ -48,7 +48,7 @@ room for such suffix.
   content: {{ $.Files.Get "files/etc/ssh/sshd_config" | b64enc }}
 {{- end -}}
 
-{{- define "sshFiles" -}}
+{{- define "sshFilesBastion" -}}
 - path: /etc/ssh/trusted-user-ca-keys.pem
   permissions: "0600"
   encoding: base64

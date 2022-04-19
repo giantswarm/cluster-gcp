@@ -1,16 +1,4 @@
 {{- define "bastion" }}
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    cluster.x-k8s.io/role: bastion
-    {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-bastion-ignition
-  namespace: {{ .Release.Namespace }}
-type: cluster.x-k8s.io/secret
-data:
-  value: {{ include "bastionIgnition" . }}
----
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
