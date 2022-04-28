@@ -5,10 +5,10 @@ kubernetesVersion: 1.20.10
 
 gcp:
   baseImage: "https://www.googleapis.com/compute/v1/projects/capi-test-phoenix/global/images/cluster-api-ubuntu-1804-v1-20-10-1642604275"
-  region: "europe-west6"
+  region: "europe-west3"
   project: "capi-test-phoenix"
   failureDomains:
-  - "europe-west6-a"
+  - "europe-west3-a"
 
 network:
   autoCreateSubnetworks: true
@@ -28,9 +28,23 @@ controlPlane:
 
 machineDeployments:
 - name: def00
-  failureDomain: europe-west6-a
+  failureDomain: europe-west3-a
   instanceType: n2-standard-4
-  replicas: 4
+  replicas: 1
+  rootVolumeSizeGB: 300
+  customNodeLabels:
+  - label=default
+- name: def01
+  failureDomain: europe-west3-b
+  instanceType: n2-standard-4
+  replicas: 1
+  rootVolumeSizeGB: 300
+  customNodeLabels:
+  - label=default
+- name: def02
+  failureDomain: europe-west3-c
+  instanceType: n2-standard-4
+  replicas: 1
   rootVolumeSizeGB: 300
   customNodeLabels:
   - label=default
