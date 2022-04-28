@@ -22,15 +22,15 @@ bastion:
   image: "https://www.googleapis.com/compute/v1/projects/capi-test-phoenix/global/images/cluster-api-ubuntu-1804-v1-20-10-1642604275"
 
 controlPlane:
-  instanceType: n1-standard-2
-  replicas: 1  # Should be an odd number.
+  instanceType: n2-standard-4
+  replicas: 3  # Should be an odd number.
   rootVolumeSizeGB: 120
 
 machineDeployments:
 - name: def00
   failureDomain: europe-west6-a
-  instanceType: n1-standard-2
-  replicas: 3
+  instanceType: n2-standard-4
+  replicas: 4
   rootVolumeSizeGB: 300
   customNodeLabels:
   - label=default
