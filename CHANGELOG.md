@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Move default instance type from n1-standard-2 with 2 vCPU and 7Gbi to n2-standard-4 with 4 vCPU and 16Gbi
+- Bump default control-plane nodes to 3 and worker nodes to 4, to be more alinged with AWS and Azure MCs
+
 ## [0.4.2] - 2022-04-13
 
 ### Changed
