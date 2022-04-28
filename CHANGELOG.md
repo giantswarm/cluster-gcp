@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2022-04-28
+
 - Move default instance type from n1-standard-2 with 2 vCPU and 7Gbi to n2-standard-4 with 4 vCPU and 16Gbi
 - Bump default control-plane nodes to 3
 - Use 3 machineDeployments in different availability zones
@@ -60,7 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.2...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.3.1...v0.4.0
