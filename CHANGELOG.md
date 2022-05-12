@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add team label to helm resources.
 - Add `values.schema.json` file.
+- Add Service Account to control-plane MachineTemplate
 
 ## [0.5.1] - 2022-04-28
 

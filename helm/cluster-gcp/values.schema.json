@@ -33,6 +33,14 @@
                 },
                 "rootVolumeSizeGB": {
                     "type": "integer"
+                },
+                "serviceAccount": {
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },
