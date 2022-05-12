@@ -102,4 +102,6 @@ spec:
       image: {{ .Values.gcp.baseImage }}
       instanceType: {{ .Values.controlPlane.instanceType }}
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+      serviceAccounts:
+        email: {{ .Values.controlPlane.serviceAccount.email }}
 {{- end -}}
