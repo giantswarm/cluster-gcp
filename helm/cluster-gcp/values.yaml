@@ -27,6 +27,8 @@ controlPlane:
   rootVolumeSizeGB: 120
   serviceAccount:
     email: "service-account@email"  # A service account used by the control-plane to set up LoadBalancer Services
+    scopes:
+    - "https://www.googleapis.com/auth/compute"
 
 machineDeployments:
 - name: def00

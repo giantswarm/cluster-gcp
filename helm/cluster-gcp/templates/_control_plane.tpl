@@ -104,4 +104,5 @@ spec:
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
       serviceAccounts:
         email: {{ .Values.controlPlane.serviceAccount.email }}
+        scopes: {{ .Values.controlPlane.serviceAccount.scopes }}
 {{- end -}}
