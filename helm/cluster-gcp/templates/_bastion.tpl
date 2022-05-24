@@ -30,6 +30,7 @@ spec:
           kind: KubeadmConfigTemplate
           name: {{ include "resource.default.name" $ }}-bastion
       clusterName: {{ include "resource.default.name" $ }}
+      failureDomain: {{ index .Values.gcp.failureDomains 0 }}
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
