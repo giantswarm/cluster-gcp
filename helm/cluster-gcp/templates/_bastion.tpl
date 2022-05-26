@@ -54,6 +54,8 @@ spec:
     spec:
       instanceType: {{ .Values.bastion.instanceType }}
       publicIP: true
+      additionalNetworkTags:
+      - {{ include "resource.default.name" $ }}-bastion
       image: {{ .Values.bastion.image }}
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
