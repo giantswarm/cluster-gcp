@@ -61,6 +61,10 @@ room for such suffix.
   permissions: "0600"
   encoding: base64
   content: {{ $.Files.Get "files/etc/kubernetes/policies/audit-policy.yaml" | b64enc }}
+- path: /etc/kubernetes/gcp.conf
+  permissions: "0600"
+  encoding: base64
+  content: {{ $.Files.Get "files/etc/kubernetes/gcp.conf" | b64enc }}
 {{- end -}}
 
 

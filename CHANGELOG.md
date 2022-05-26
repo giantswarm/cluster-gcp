@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Add `cloud-config` for GCP cloud provider to enable multizone for controller manager.
+
 ## [0.6.1] - 2022-05-13
 
 - Set the `scopes` (`compute-rw` by default) on control-plane's MachineTemplate Service Account

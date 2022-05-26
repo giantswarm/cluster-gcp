@@ -50,6 +50,12 @@ spec:
           allocate-node-cidrs: "false"
           bind-address: 0.0.0.0
           cloud-provider: gce
+          cloud-config: /etc/kubernetes/gcp.conf
+        extraVolumes:
+        - hostPath: /etc/kubernetes/gcp.conf
+          mountPath: /etc/kubernetes/gcp.conf
+          name: cloud-config
+          readOnly: true
       scheduler:
         extraArgs:
           bind-address: 0.0.0.0
