@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Set `certSANs` on the k8s api server so that certificates work.
+
 ## [0.6.2] - 2022-05-26
 
 - Add `cloud-config` for GCP cloud provider to enable multizone for controller manager.

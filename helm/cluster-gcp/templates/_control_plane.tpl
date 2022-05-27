@@ -19,6 +19,8 @@ spec:
     clusterConfiguration:
       apiServer:
         timeoutForControlPlane: 20m
+        certSANs:
+          - "api.{{ include "resource.default.name" $ }}.{{ .Values.baseDomain }}"
         extraArgs:
           cloud-provider: gce
           audit-log-maxage: "30"
