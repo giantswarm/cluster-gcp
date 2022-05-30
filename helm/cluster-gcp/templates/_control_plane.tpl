@@ -23,6 +23,17 @@ spec:
           - "api.{{ include "resource.default.name" $ }}.{{ .Values.baseDomain }}"
         extraArgs:
           cloud-provider: gce
+          {{- if .Values.oidc.issuerUrl }}
+          {{- with .Values.oidc }}
+          oidc-issuer-url: {{ .issuerUrl }}
+          oidc-client-id: {{ .clientId }}
+          oidc-username-claim: {{ .usernameClaim }}
+          oidc-groups-claim: {{ .groupsClaim }}
+          {{- if .caFile }}
+          oidc-ca-file: {{ .caFile }}
+          {{- end }}
+          {{- end }}
+          {{- end }}
           audit-log-maxage: "30"
           audit-log-maxbackup: "30"
           audit-log-maxsize: "100"
