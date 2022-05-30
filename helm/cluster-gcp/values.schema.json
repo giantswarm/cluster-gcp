@@ -157,13 +157,7 @@
                 "usernameClaim": {
                     "type": "string"
                 }
-            },
-            "required": [
-                "clientId",
-                "groupsClaim",
-                "issuerUrl",
-                "usernameClaim"
-            ]
+            }
         },
         "organization": {
             "type": "string"
