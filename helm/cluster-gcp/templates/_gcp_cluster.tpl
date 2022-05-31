@@ -12,7 +12,7 @@ spec:
     autoCreateSubnetworks: {{ .Values.network.autoCreateSubnetworks }}
   region: {{ .Values.gcp.region }}
   project: {{ .Values.gcp.project }}
-  failureDomains: |-
+  failureDomains:
     {{- range .Values.gcp.failureDomains }}
     - {{ . }}
     {{- end }}
