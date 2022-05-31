@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Render failure domains on the `GCPCluster` as an array.
+- Use same service account default than CAPG.
 
 ## [0.8.0] - 2022-05-30
 
