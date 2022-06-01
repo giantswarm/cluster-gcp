@@ -25,6 +25,7 @@ cluster.x-k8s.io/cluster-name: {{ include "resource.default.name" . | quote }}
 giantswarm.io/cluster: {{ include "resource.default.name" . | quote }}
 giantswarm.io/organization: {{ .Values.organization | quote }}
 helm.sh/chart: {{ include "chart" . | quote }}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 {{- end -}}
 
 {{/*
@@ -71,6 +72,10 @@ room for such suffix.
   permissions: "0600"
   encoding: base64
   content: {{ $.Files.Get "files/etc/kubernetes/policies/audit-policy.yaml" | b64enc }}
+- path: /etc/kubernetes/gcp.conf
+  permissions: "0600"
+  encoding: base64
+  content: {{ $.Files.Get "files/etc/kubernetes/gcp.conf" | b64enc }}
 {{- end -}}
 
 

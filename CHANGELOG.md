@@ -9,6 +9,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add bastion support.
 
+## [0.8.0] - 2022-05-30
+
+### Added
+
+- Allow to pass OIDC configuration.
+
+## [0.7.0] - 2022-05-27
+
+### Changed
+
+- Set `certSANs` on the k8s api server so that certificates work.
+
+## [0.6.2] - 2022-05-26
+
+- Add `cloud-config` for GCP cloud provider to enable multizone for controller manager.
+
+## [0.6.1] - 2022-05-13
+
+- Set the `scopes` (`compute-rw` by default) on control-plane's MachineTemplate Service Account
+
+## [0.6.0] - 2022-05-12
+
+### Changed
+
+- Add team label to helm resources.
+- Add `values.schema.json` file.
+- Add Service Account to control-plane MachineTemplate
+
+## [0.5.1] - 2022-04-28
+
+- Fix helm not generating all KubeadmConfigTemplate's for each machine deployment
+
+## [0.5.0] - 2022-04-28
+
+- Move default instance type from n1-standard-2 with 2 vCPU and 7Gbi to n2-standard-4 with 4 vCPU and 16Gbi
+- Bump default control-plane nodes to 3
+- Use 3 machineDeployments in different availability zones
+- Move to the `europe-west3` region by default
+
 ## [0.4.2] - 2022-04-13
 
 ### Changed
@@ -57,7 +96,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.2...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.7.0...v0.8.0
+[0.7.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.6.2...v0.7.0
+[0.6.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.6.1...v0.6.2
+[0.6.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.6.0...v0.6.1
+[0.6.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.5.1...v0.6.0
+[0.5.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.3.1...v0.4.0

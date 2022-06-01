@@ -19,8 +19,21 @@ spec:
     clusterConfiguration:
       apiServer:
         timeoutForControlPlane: 20m
+        certSANs:
+          - "api.{{ include "resource.default.name" $ }}.{{ .Values.baseDomain }}"
         extraArgs:
           cloud-provider: gce
+          {{- if .Values.oidc.issuerUrl }}
+          {{- with .Values.oidc }}
+          oidc-issuer-url: {{ .issuerUrl }}
+          oidc-client-id: {{ .clientId }}
+          oidc-username-claim: {{ .usernameClaim }}
+          oidc-groups-claim: {{ .groupsClaim }}
+          {{- if .caFile }}
+          oidc-ca-file: {{ .caFile }}
+          {{- end }}
+          {{- end }}
+          {{- end }}
           audit-log-maxage: "30"
           audit-log-maxbackup: "30"
           audit-log-maxsize: "100"
@@ -50,6 +63,12 @@ spec:
           allocate-node-cidrs: "false"
           bind-address: 0.0.0.0
           cloud-provider: gce
+          cloud-config: /etc/kubernetes/gcp.conf
+        extraVolumes:
+        - hostPath: /etc/kubernetes/gcp.conf
+          mountPath: /etc/kubernetes/gcp.conf
+          name: cloud-config
+          readOnly: true
       scheduler:
         extraArgs:
           bind-address: 0.0.0.0
@@ -102,4 +121,7 @@ spec:
       image: {{ .Values.gcp.baseImage }}
       instanceType: {{ .Values.controlPlane.instanceType }}
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+      serviceAccounts:
+        email: {{ .Values.controlPlane.serviceAccount.email }}
+        scopes: {{ .Values.controlPlane.serviceAccount.scopes }}
 {{- end -}}
