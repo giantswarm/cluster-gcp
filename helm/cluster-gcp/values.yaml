@@ -9,7 +9,7 @@ gcp:
   region: "europe-west3"
   project: "capi-test-phoenix"
   failureDomains:
-  - "europe-west3-a"
+    - europe-west3-a
 
 network:
   autoCreateSubnetworks: true
@@ -27,7 +27,7 @@ controlPlane:
   replicas: 3  # Should be an odd number.
   rootVolumeSizeGB: 120
   serviceAccount:
-    email: "service-account@email"  # A service account used by the control-plane to set up LoadBalancer Services
+    email: "default"  # A service account used by the control-plane to set up LoadBalancer Services
     scopes:
     - "https://www.googleapis.com/auth/compute"
 
