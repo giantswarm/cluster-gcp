@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Add bastion support.
+- 
 ## [0.9.0] - 2022-05-31
 
 ### Fixed
