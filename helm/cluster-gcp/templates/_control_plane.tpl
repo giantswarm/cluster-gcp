@@ -44,6 +44,7 @@ spec:
           kubelet-preferred-address-types: InternalIP
           profiling: "false"
           runtime-config: api/all=true,scheduling.k8s.io/v1alpha1=true
+          secure-port: {{ .Values.controlPlane.bindPort }}
           service-account-lookup: "true"
           tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256
           service-cluster-ip-range: {{ .Values.network.serviceCIDR }}
@@ -85,7 +86,7 @@ spec:
     initConfiguration:
       localAPIEndpoint:
         advertiseAddress: ""
-        bindPort: {{ .Values.controlPlane.bindPort }}
+        bindPort: 0
       nodeRegistration:
         kubeletExtraArgs:
           cloud-provider: gce
