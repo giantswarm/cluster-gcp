@@ -85,7 +85,7 @@ spec:
     initConfiguration:
       localAPIEndpoint:
         advertiseAddress: ""
-        bindPort: 0
+        bindPort: {{ .Values.controlPlane.bindPort }}
       nodeRegistration:
         kubeletExtraArgs:
           cloud-provider: gce
