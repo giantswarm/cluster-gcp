@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Prevent setting a failureDomain not in the specified region
+
 ## [0.10.0] - 2022-06-06
 
 - Add bastion support.

@@ -14,6 +14,10 @@ spec:
   project: {{ .Values.gcp.project }}
   failureDomains:
     {{- range .Values.gcp.failureDomains }}
+    {{- if (hasPrefix $.Values.gcp.region .) }}
     - {{ . }}
+    {{- else -}}
+    {{ fail (printf "Failure domain '%s' must be part of the provided region '%s'" . $.Values.gcp.region )}}
+    {{- end -}}
     {{- end }}
 {{ end }}
