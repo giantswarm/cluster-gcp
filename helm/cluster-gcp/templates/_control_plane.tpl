@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         {{- include "labels.common" $ | nindent 8 }}
+        cluster.x-k8s.io/deployment-name: {{ include "resource.default.name" $ }}-control-plane
     infrastructureRef:
       apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
       kind: GCPMachineTemplate
@@ -117,6 +118,10 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
+    metadata:
+      labels:
+        {{- include "labels.common" $ | nindent 8 }}
+        cluster.x-k8s.io/deployment-name: {{ include "resource.default.name" $ }}-control-plane
     spec:
       image: {{ .Values.gcp.baseImage }}
       instanceType: {{ .Values.controlPlane.instanceType }}
