@@ -65,6 +65,17 @@ metadata:
 spec:
   template:
     spec:
+      joinConfiguration:
+        discovery: {}
+        nodeRegistration:
+          kubeletExtraArgs:
+            cloud-provider: gce
+            healthz-bind-address: 0.0.0.0
+            image-pull-progress-deadline: 1m
+            node-ip: '{{ `{{ ds.meta_data.local_ipv4 }}` }}'
+            node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }},{{- join "," .customNodeLabels }}
+            v: "2"
+          name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
       preKubeadmCommands:
       {{- include "sshPostKubeadmCommands" $ | nindent 6 }}
       - sleep infinity
