@@ -47,10 +47,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   template:
-    metadata:
-      labels:
-        cluster.x-k8s.io/role: bastion
-        {{- include "labels.common" $ | nindent 8 }}
     spec:
       instanceType: {{ .Values.bastion.instanceType }}
       publicIP: true
