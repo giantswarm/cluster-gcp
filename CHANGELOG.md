@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.11.0] - 2022-06-13
 
+- Make bastion node optional via config values.
+
 ## [0.10.2] - 2022-06-10
 
 - Remove metadata from bastion GCPMAchineTemplates's template. This isn't currenlty supported in capg v1.0.2
