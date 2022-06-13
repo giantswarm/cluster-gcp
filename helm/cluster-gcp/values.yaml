@@ -18,6 +18,7 @@ network:
   serviceCIDR: 172.31.0.0/16
 
 bastion:
+  enabled: true
   instanceType: n1-standard-2
   replicas: 1
   image: "https://www.googleapis.com/compute/v1/projects/capi-test-phoenix/global/images/cluster-api-ubuntu-1804-v1-20-10-1642604275"
