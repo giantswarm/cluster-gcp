@@ -7,8 +7,10 @@
 ---
 {{- include "gcp-cluster" . }}
 ---
+{{ if .Values.bastion.enabled }}
 {{- include "bastion" . }}
 ---
+{{ end }}
 {{- include "control-plane" . }}
 ---
 {{- include "machine-deployments" . }}
