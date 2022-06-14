@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated VM image location
+- Bumped kubernetes version to 1.20.15
+
+### Added
+
+- Make task to generate values schema
+
 ## [0.11.0] - 2022-06-13
 
 - Make bastion node optional via config values.

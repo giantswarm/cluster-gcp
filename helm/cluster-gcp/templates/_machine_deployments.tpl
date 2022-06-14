@@ -46,7 +46,7 @@ metadata:
 spec:
   template:
     spec:
-      image: {{ $global.Values.gcp.baseImage }}
+      image: {{ include "vmImage" $global }}
       instanceType: {{ .instanceType }}
       rootDeviceSize: {{ .rootVolumeSizeGB }}
 ---

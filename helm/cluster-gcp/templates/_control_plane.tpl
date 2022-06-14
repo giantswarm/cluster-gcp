@@ -118,7 +118,7 @@ metadata:
 spec:
   template:
     spec:
-      image: {{ .Values.gcp.baseImage }}
+      image: {{ include "vmImage" $ }}
       instanceType: {{ .Values.controlPlane.instanceType }}
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
       serviceAccounts:
