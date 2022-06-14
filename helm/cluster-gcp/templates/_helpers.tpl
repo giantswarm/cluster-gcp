@@ -92,3 +92,7 @@ room for such suffix.
   groups: sudo
   sudo: ALL=(ALL) NOPASSWD:ALL
 {{- end -}}
+
+{{- define "vmImage" -}}
+{{ .Values.vmImageBase }}cluster-api-ubuntu-1804-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
+{{- end -}}

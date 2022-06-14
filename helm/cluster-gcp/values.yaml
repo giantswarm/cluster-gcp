@@ -2,10 +2,11 @@ clusterName: "test"  # Name of cluster. Used as base name for all cluster resour
 clusterDescription: "test"  # Cluster description used in metadata.
 organization: "test"  # Organization in which to create the cluster.
 baseDomain: ""  # Customer base domain, generally of the form "<customer codename>.gigantic.io".
-kubernetesVersion: 1.20.10
+kubernetesVersion: 1.20.15
+
+vmImageBase: "https://www.googleapis.com/compute/v1/projects/giantswarm-vm-images/global/images/"
 
 gcp:
-  baseImage: "https://www.googleapis.com/compute/v1/projects/capi-test-phoenix/global/images/cluster-api-ubuntu-1804-v1-20-10-1642604275"
   region: "europe-west3"
   project: "capi-test-phoenix"
   failureDomains:
@@ -21,7 +22,6 @@ bastion:
   enabled: true
   instanceType: n1-standard-2
   replicas: 1
-  image: "https://www.googleapis.com/compute/v1/projects/capi-test-phoenix/global/images/cluster-api-ubuntu-1804-v1-20-10-1642604275"
 
 controlPlane:
   instanceType: n2-standard-4
