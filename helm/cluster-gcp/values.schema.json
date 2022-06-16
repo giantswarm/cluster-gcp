@@ -8,8 +8,8 @@
         "bastion": {
             "type": "object",
             "properties": {
-                "image": {
-                    "type": "string"
+                "enabled": {
+                    "type": "boolean"
                 },
                 "instanceType": {
                     "type": "string"
@@ -56,9 +56,6 @@
         "gcp": {
             "type": "object",
             "properties": {
-                "baseImage": {
-                    "type": "string"
-                },
                 "failureDomains": {
                     "type": "array",
                     "items": {
@@ -163,6 +160,9 @@
             "type": "string"
         },
         "sshSSOPublicKey": {
+            "type": "string"
+        },
+        "vmImageBase": {
             "type": "string"
         }
     }

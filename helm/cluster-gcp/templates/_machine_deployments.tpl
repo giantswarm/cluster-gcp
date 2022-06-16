@@ -24,7 +24,11 @@ spec:
           kind: KubeadmConfigTemplate
           name: {{ include "resource.default.name" $ }}-{{ .name }}
       clusterName: {{ include "resource.default.name" $ }}
+      {{- if (hasPrefix $.Values.gcp.region .failureDomain) }}
       failureDomain: {{ .failureDomain }}
+      {{- else -}}
+      {{ fail (printf "Failure domain '%s' must be part of the provided region '%s'" .failureDomain $.Values.gcp.region )}}
+      {{- end }}
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
@@ -42,7 +46,7 @@ metadata:
 spec:
   template:
     spec:
-      image: {{ $global.Values.gcp.baseImage }}
+      image: {{ include "vmImage" $global }}
       instanceType: {{ .instanceType }}
       rootDeviceSize: {{ .rootVolumeSizeGB }}
 ---

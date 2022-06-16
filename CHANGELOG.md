@@ -11,6 +11,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Allow to customize the apiserver port.
 
+## [0.12.1] - 2022-06-16
+
+### Changed
+
+- Bumped to latest cluster-shared (0.4.0)
+
+## [0.12.0] - 2022-06-14
+
+### Changed
+
+- Updated VM image location
+- Bumped kubernetes version to 1.20.15
+
+### Added
+
+- Make task to generate values schema
+
+## [0.11.0] - 2022-06-13
+
+- Make bastion node optional via config values.
+
+## [0.10.2] - 2022-06-10
+
+- Remove metadata from bastion GCPMAchineTemplates's template. This isn't currenlty supported in capg v1.0.2
+
+## [0.10.1] - 2022-06-07
+
+### Fixed
+
+- Prevent setting a failureDomain not in the specified region
+
 ## [0.10.0] - 2022-06-06
 
 - Add bastion support.
@@ -109,7 +140,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.10.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.1...HEAD
+[0.12.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.0...v0.12.1
+[0.12.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.11.0...v0.12.0
+[0.11.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.10.2...v0.11.0
+[0.10.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.10.1...v0.10.2
+[0.10.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.7.0...v0.8.0
