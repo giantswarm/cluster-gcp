@@ -29,6 +29,18 @@ application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantsw
 {{- end -}}
 
 {{/*
+Selector labels
+*/}}
+{{- define "labels.selector" -}}
+app: {{ include "name" . | quote }}
+app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+cluster.x-k8s.io/cluster-name: {{ include "resource.default.name" . | quote }}
+giantswarm.io/cluster: {{ include "resource.default.name" . | quote }}
+giantswarm.io/organization: {{ .Values.organization | quote }}
+helm.sh/chart: {{ include "chart" . | quote }}
+{{- end -}}
+
+{{/*
 Create a name stem for resource names
 When resources are created from templates by Cluster API controllers, they are given random suffixes.
 Given that Kubernetes allows 63 characters for resource names, the stem is truncated to 47 characters to leave
