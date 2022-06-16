@@ -22,7 +22,6 @@ bastion:
   enabled: true
   instanceType: n1-standard-2
   replicas: 1
-  image: projects/giantswarm-vm-images/global/images/cluster-api-ubuntu-2004-v1-20-15-gs
 
 controlPlane:
   instanceType: n2-standard-4
