@@ -10,5 +10,5 @@ restrictions:
     - gcp
 dependencies:
 - name: cluster-shared
-  version: "0.4.1-d7ca09fa82cb57c345dd1d33f03535d6421bdd5d"
-  repository: "https://giantswarm.github.io/cluster-test-catalog"
+  version: "0.4.2"
+  repository: "https://giantswarm.github.io/cluster-catalog"
