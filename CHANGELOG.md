@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Bumped version of cluster-shared to include coredns-workers fix
+
 ## [0.12.2] - 2022-06-16
 
 ### Fixed
