@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove chart label from selector labels
+
 ## [0.12.3] - 2022-06-17
 
 ### Fixed
