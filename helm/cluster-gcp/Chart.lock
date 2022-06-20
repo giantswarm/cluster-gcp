@@ -1,6 +1,6 @@
 dependencies:
 - name: cluster-shared
   repository: https://giantswarm.github.io/cluster-catalog
-  version: 0.5.0
-digest: sha256:69f3bcc5bfc75327ffae50250fcf5bead1017d4bd0a2ef4c75a5c79b8504ab7a
-generated: "2022-06-20T14:36:41.463665+01:00"
+  version: 0.5.1
+digest: sha256:286a61438ed407b102690964643f540c4679e896e4834741d6ffd6579ef8a095
+generated: "2022-06-20T16:10:55.609205+01:00"
