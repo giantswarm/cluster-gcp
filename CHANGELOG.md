@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Make task for updating chart deps
+
+### Changed
+
+- Bumped cluster-shared to latest
+
 ## [0.12.6] - 2022-06-17
 
 ## [0.12.5] - 2022-06-17
