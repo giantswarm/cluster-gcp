@@ -52,7 +52,7 @@ spec:
       publicIP: true
       additionalNetworkTags:
       - {{ include "resource.default.name" $ }}-bastion
-      image: {{ .Values.bastion.image }}
+      image: {{ include "vmImage" $ }}
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate
