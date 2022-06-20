@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.7] - 2022-06-20
+
 ### Added
 
 - Make task for updating chart deps
@@ -166,7 +168,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.6...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.7...HEAD
+[0.12.7]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.6...v0.12.7
 [0.12.6]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.5...v0.12.6
 [0.12.5]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.4...v0.12.5
 [0.12.4]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.3...v0.12.4
