@@ -9,7 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Make task for updating chart deps
 - Allow to customize the apiserver port.
+
+### Changed
+
+- Bumped cluster-shared to latest
 
 ## [0.12.6] - 2022-06-17
 
