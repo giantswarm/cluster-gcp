@@ -101,5 +101,5 @@ room for such suffix.
 {{- end -}}
 
 {{- define "vmImage" -}}
-{{ .Values.vmImageBase }}cluster-api-ubuntu-1804-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
+{{ .Values.vmImageBase }}cluster-api-ubuntu-{{ .Values.ubuntuImageVersion }}-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
 {{- end -}}

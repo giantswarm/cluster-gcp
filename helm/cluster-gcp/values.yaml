@@ -3,6 +3,7 @@ clusterDescription: "test"  # Cluster description used in metadata.
 organization: "test"  # Organization in which to create the cluster.
 baseDomain: ""  # Customer base domain, generally of the form "<customer codename>.gigantic.io".
 kubernetesVersion: 1.20.15
+ubuntuImageVersion: "1804"
 
 vmImageBase: "https://www.googleapis.com/compute/v1/projects/giantswarm-vm-images/global/images/"
 
