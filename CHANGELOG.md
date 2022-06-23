@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.0] - 2022-06-23
+
 ### Added
 
 - Add value to configure the vm image's ubuntu version
@@ -176,7 +178,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.8...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.0...HEAD
+[0.13.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.8...v0.13.0
 [0.12.8]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.7...v0.12.8
 [0.12.7]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.6...v0.12.7
 [0.12.6]: https://github.com/giantswarm/cluster-gcp/compare/v0.12.5...v0.12.6
