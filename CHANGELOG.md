@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add value to configure the vm image's ubuntu version
+
 ## [0.12.8] - 2022-06-20
 
 - Bumped cluster-shared to latest
