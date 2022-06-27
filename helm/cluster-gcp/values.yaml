@@ -17,7 +17,7 @@ gcp:
 
 network:
   autoCreateSubnetworks: true
-  nodeSubnetCidrs: [] # Array of CIDRs to be used if `autoCreateSubnetworks` is set to `false`
+  nodeSubnetCidrs: []  # Array of CIDRs to be used if `autoCreateSubnetworks` is set to `false`
   podCidr:
     - "192.168.0.0/16"
   serviceCIDR: 172.31.0.0/16
