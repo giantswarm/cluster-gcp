@@ -96,10 +96,7 @@
                 "type": "object",
                 "properties": {
                     "customNodeLabels": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
+                        "type": "array"
                     },
                     "failureDomain": {
                         "type": "string"
@@ -124,6 +121,9 @@
             "properties": {
                 "autoCreateSubnetworks": {
                     "type": "boolean"
+                },
+                "nodeSubnetCidrs": {
+                    "type": "array"
                 },
                 "podCidr": {
                     "type": "array",

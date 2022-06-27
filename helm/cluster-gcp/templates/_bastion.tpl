@@ -53,6 +53,9 @@ spec:
       additionalNetworkTags:
       - {{ include "resource.default.name" $ }}-bastion
       image: {{ include "vmImage" $ }}
+      {{- if .Values.bastion.subnet }}
+      subnet: {{ .Values.bastion.subnet }}
+      {{- end }}
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate

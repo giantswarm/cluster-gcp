@@ -121,6 +121,9 @@ spec:
       image: {{ include "vmImage" $ }}
       instanceType: {{ .Values.controlPlane.instanceType }}
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+      {{- if .Values.controlPlane.subnet }}
+      subnet: {{ .Values.controlPlane.subnet }}
+      {{- end}}
       serviceAccounts:
         email: {{ .Values.controlPlane.serviceAccount.email }}
         scopes: {{ .Values.controlPlane.serviceAccount.scopes }}

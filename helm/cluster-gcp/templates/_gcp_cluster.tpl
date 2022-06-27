@@ -10,6 +10,13 @@ spec:
   network:
     name: {{ include "resource.default.name" $ }}-network
     autoCreateSubnetworks: {{ .Values.network.autoCreateSubnetworks }}
+    {{- if eq .Values.network.autoCreateSubnetworks false }}
+    subnets:
+    {{- range .Values.network.nodeSubnetCidrs }}
+    - cidrBlock: {{ . }}
+      region: {{ $.Values.gcp.region }}
+    {{- end }}
+    {{- end }}
   region: {{ .Values.gcp.region }}
   project: {{ .Values.gcp.project }}
   failureDomains:
