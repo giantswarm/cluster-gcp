@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support specifying custom subnets
+
+### Fixed
+
+- Makefile task to generate values schema
+
 ## [0.13.0] - 2022-06-23
 
 ### Added

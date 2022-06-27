@@ -49,6 +49,9 @@ spec:
       image: {{ include "vmImage" $global }}
       instanceType: {{ .instanceType }}
       rootDeviceSize: {{ .rootVolumeSizeGB }}
+      {{- if .subnet }}
+      subnet: {{ .subnet }}
+      {{- end }}
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate
@@ -69,7 +72,7 @@ spec:
             healthz-bind-address: 0.0.0.0
             image-pull-progress-deadline: 1m
             node-ip: '{{ `{{ ds.meta_data.local_ipv4 }}` }}'
-            node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }},{{- join "," .customNodeLabels }}
+            node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }}{{ if .customNodeLabels }},{{- join "," .customNodeLabels }}{{ end }}
             v: "2"
           name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
       postKubeadmCommands:
