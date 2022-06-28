@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.0] - 2022-06-28
+
 ### Changed
 
 - Immutable resources now use a unique name to allow for updates to be made
@@ -216,7 +218,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.5...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.0...HEAD
+[0.14.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.5...v0.14.0
 [0.13.5]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.4...v0.13.5
 [0.13.4]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.3...v0.13.4
 [0.13.3]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.2...v0.13.3
