@@ -13,6 +13,7 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   clusterName: {{ include "resource.default.name" $ }}
+  revisionHistoryLimit: 0
   replicas: {{ .replicas }}
   selector:
     matchLabels: null
@@ -22,7 +23,7 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
           kind: KubeadmConfigTemplate
-          name: {{ include "resource.default.name" $ }}-{{ .name }}
+          name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
       clusterName: {{ include "resource.default.name" $ }}
       {{- if (hasPrefix $.Values.gcp.region .failureDomain) }}
       failureDomain: {{ .failureDomain }}
@@ -32,14 +33,14 @@ spec:
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
-        name: {{ include "resource.default.name" $ }}-{{ .name }}
+        name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
       version: {{ $.Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: GCPMachineTemplate
 metadata:
   labels:
-    giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
+    giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
     {{- include "labels.common" $ | nindent 4 }}
   name: {{ include "resource.default.name" $ }}-{{ .name }}
   namespace: {{ $.Release.Namespace }}
@@ -59,7 +60,7 @@ metadata:
   labels:
     giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ .name }}
+  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:

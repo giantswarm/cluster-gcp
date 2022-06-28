@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Immutable resources now use a unique name to allow for updates to be made
+
 ## [0.13.5] - 2022-06-28
 
 ### Changed

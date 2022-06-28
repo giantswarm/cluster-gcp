@@ -103,3 +103,8 @@ room for such suffix.
 {{- define "vmImage" -}}
 {{ .Values.vmImageBase }}cluster-api-ubuntu-{{ .Values.ubuntuImageVersion }}-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
 {{- end -}}
+
+
+{{- define "hash" -}}
+{{- mustToJson . | toString | quote | sha1sum | trunc 8 }}
+{{- end -}}
