@@ -2,7 +2,7 @@
 
 readonly SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# This pod will apply the ClusterResourceSet manifests so that we have them in a configmap.
+# This pod will apply the manifests inside the ConfigMap used by the ClusterResourceSet.
 kubectl apply -f "${SCRIPT_DIR}/pod-test.yaml"
 
 # We need to wait until the job is actually created, before we can 'kubectl wait' for it.
