@@ -100,6 +100,8 @@ spec:
         kubeletExtraArgs:
           cloud-provider: gce
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+    preKubeadmCommands:
+    - /bin/bash /opt/init-disks.sh
     postKubeadmCommands:
     {{- include "sshPostKubeadmCommands" . | nindent 4 }}
     users:
