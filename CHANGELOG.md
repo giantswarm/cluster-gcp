@@ -11,6 +11,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added tests to check coredns-adopter logic.
 
+## [0.14.2] - 2022-06-29
+
+### Fixed
+
+- Bump cluster-shared
+
+## [0.14.1] - 2022-06-29
+
+### Fixed
+
+- Added missing hash to template names
+
+### Changed
+
+- Bumped cluster-shared to latest 0.5.6
+
+## [0.14.0] - 2022-06-28
+
+### Changed
+
+- Immutable resources now use a unique name to allow for updates to be made
+
+## [0.13.5] - 2022-06-28
+
 ### Changed
 
 - Bumped cluster-shared to latest 0.5.5
@@ -214,7 +238,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.4...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.2...HEAD
+[0.14.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.1...v0.14.2
+[0.14.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.0...v0.14.1
+[0.14.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.5...v0.14.0
+[0.13.5]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.4...v0.13.5
 [0.13.4]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.3...v0.13.4
 [0.13.3]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.2...v0.13.3
 [0.13.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.1...v0.13.2
