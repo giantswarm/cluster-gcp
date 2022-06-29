@@ -50,6 +50,11 @@ spec:
       image: {{ include "vmImage" $global }}
       instanceType: {{ .instanceType }}
       rootDeviceSize: {{ .rootVolumeSizeGB }}
+      additionalDisks:
+      - deviceType: pd-ssd
+        size: {{ .containerdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .kubeletVolumeSizeGB }}
       {{- if .subnet }}
       subnet: {{ .subnet }}
       {{- end }}
@@ -76,6 +81,11 @@ spec:
             node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }}{{ if .customNodeLabels }},{{- join "," .customNodeLabels }}{{ end }}
             v: "2"
           name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+      files:
+      {{- include "sshFiles" . | nindent 6 }}
+      {{- include "diskFiles" . | nindent 6 }}
+      preKubeadmCommands:
+      - /bin/bash /opt/init-disks.sh
       postKubeadmCommands:
       {{- include "sshPostKubeadmCommands" . | nindent 6 }}
       users:

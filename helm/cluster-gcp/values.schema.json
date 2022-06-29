@@ -121,6 +121,12 @@
                     },
                     "rootVolumeSizeGB": {
                         "type": "integer"
+                    },
+                    "containerdVolumeSizeGB": {
+                        "type": "integer"
+                    },
+		    "kubeletVolumeSizeGB": {
+                        "type": "integer"
                     }
                 }
             }
