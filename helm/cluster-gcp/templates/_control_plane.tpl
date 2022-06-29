@@ -121,6 +121,13 @@ spec:
       image: {{ include "vmImage" $ }}
       instanceType: {{ .Values.controlPlane.instanceType }}
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+      additionalDisks:
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.etcdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.containerdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.kubeletVolumeSizeGB }}
       {{- if .Values.controlPlane.subnet }}
       subnet: {{ .Values.controlPlane.subnet }}
       {{- end}}
