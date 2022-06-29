@@ -18,6 +18,9 @@ spec:
   selector:
     matchLabels: null
   template:
+    metadata:
+      labels:
+        {{- include "labels.selector" $ | nindent 8 }}
     spec:
       bootstrap:
         configRef:
