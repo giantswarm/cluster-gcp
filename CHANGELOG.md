@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add labels to `MachineSets` created by `MachineDeployments`.
+- Add additional disks for control plane nodes.
+- Add additional disks for worker nodes.
 
 ## [0.14.2] - 2022-06-29
 

@@ -100,6 +100,8 @@ spec:
         kubeletExtraArgs:
           cloud-provider: gce
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+    preKubeadmCommands:
+    - /bin/bash /opt/init-disks.sh
     postKubeadmCommands:
     {{- include "sshPostKubeadmCommands" . | nindent 4 }}
     users:
@@ -121,6 +123,13 @@ spec:
       image: {{ include "vmImage" $ }}
       instanceType: {{ .Values.controlPlane.instanceType }}
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+      additionalDisks:
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.etcdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.containerdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.kubeletVolumeSizeGB }}
       {{- if .Values.controlPlane.subnet }}
       subnet: {{ .Values.controlPlane.subnet }}
       {{- end}}
