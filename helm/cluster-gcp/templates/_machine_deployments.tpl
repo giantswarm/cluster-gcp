@@ -82,8 +82,8 @@ spec:
             v: "2"
           name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
       files:
-      {{- include "sshFiles" . | nindent 6 }}
-      {{- include "diskFiles" . | nindent 6 }}
+      {{- include "sshFiles" $ | nindent 6 }}
+      {{- include "diskFiles" $ | nindent 6 }}
       preKubeadmCommands:
       - /bin/bash /opt/init-disks.sh
       postKubeadmCommands:
