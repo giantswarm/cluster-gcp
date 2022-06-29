@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Added missing hash to template names
+
 ### Changed
 
 - Bumped cluster-shared to latest 0.5.6
