@@ -31,7 +31,10 @@ bastion:
 controlPlane:
   instanceType: n2-standard-4
   replicas: 3  # Should be an odd number.
-  rootVolumeSizeGB: 120
+  rootVolumeSizeGB: 100
+  etcdVolumeSizeGB: 100
+  containerdVolumeSizeGB: 100
+  kubeletVolumeSizeGB: 100
   # subnet:
   serviceAccount:
     email: "default"  # A service account used by the control-plane to set up LoadBalancer Services
@@ -43,21 +46,27 @@ machineDeployments:
   failureDomain: europe-west3-a
   instanceType: n2-standard-4
   replicas: 1
-  rootVolumeSizeGB: 300
+  rootVolumeSizeGB: 100
+  containerdVolumeSizeGB: 100
+  kubeletVolumeSizeGB: 100
   customNodeLabels: []
   # subnet:
 - name: def01
   failureDomain: europe-west3-b
   instanceType: n2-standard-4
   replicas: 1
-  rootVolumeSizeGB: 300
+  rootVolumeSizeGB: 100
+  containerdVolumeSizeGB: 100
+  kubeletVolumeSizeGB: 100
   customNodeLabels: []
   # subnet:
 - name: def02
   failureDomain: europe-west3-c
   instanceType: n2-standard-4
   replicas: 1
-  rootVolumeSizeGB: 300
+  rootVolumeSizeGB: 100
+  containerdVolumeSizeGB: 100
+  kubeletVolumeSizeGB: 100
   customNodeLabels: []
   # subnet:
 

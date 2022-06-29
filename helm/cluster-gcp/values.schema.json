@@ -37,6 +37,15 @@
                 "rootVolumeSizeGB": {
                     "type": "integer"
                 },
+		"etcdVolumeSizeGB": {
+                    "type": "integer"
+                },
+		"containerdVolumeSizeGB": {
+                    "type": "integer"
+                },
+		"kubeletVolumeSizeGB": {
+                    "type": "integer"
+                },
                 "serviceAccount": {
                     "type": "object",
                     "properties": {
@@ -111,6 +120,12 @@
                         "type": "integer"
                     },
                     "rootVolumeSizeGB": {
+                        "type": "integer"
+                    },
+                    "containerdVolumeSizeGB": {
+                        "type": "integer"
+                    },
+		    "kubeletVolumeSizeGB": {
                         "type": "integer"
                     }
                 }
