@@ -39,6 +39,7 @@ spec:
           audit-log-maxsize: "100"
           audit-log-path: /var/log/apiserver/audit.log
           audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
+          encryption-provider-config: /etc/kubernetes/encryption/config.yaml
           enable-admission-plugins: NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota,DefaultStorageClass,PersistentVolumeClaimResize,Priority,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,PodSecurityPolicy
           feature-gates: TTLAfterFinished=true
           kubelet-preferred-address-types: InternalIP
@@ -56,6 +57,11 @@ spec:
         - name: policies
           hostPath: /etc/kubernetes/policies
           mountPath: /etc/kubernetes/policies
+          readOnly: false
+          pathType: DirectoryOrCreate
+        - name: encryption
+          hostPath: /etc/kubernetes/encryption
+          mountPath: /etc/kubernetes/encryption
           readOnly: false
           pathType: DirectoryOrCreate
       controllerManager:
