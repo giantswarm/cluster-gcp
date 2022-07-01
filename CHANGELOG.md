@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.3] - 2022-07-01
+
 ### Added
 
 - Add labels to `MachineSets` created by `MachineDeployments`.
@@ -242,7 +244,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.2...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.3...HEAD
+[0.14.3]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.2...v0.14.3
 [0.14.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.1...v0.14.2
 [0.14.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.0...v0.14.1
 [0.14.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.13.5...v0.14.0
