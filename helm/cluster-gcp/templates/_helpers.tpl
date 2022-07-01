@@ -85,7 +85,6 @@ room for such suffix.
   content: {{ $.Files.Get "files/etc/kubernetes/gcp.conf" | b64enc }}
 - path: /etc/kubernetes/encryption/config.yaml
   permissions: "0600"
-  encoding: base64
   contentFrom:
     secret:
       name: {{ include "resource.default.name" $ }}-encryption-provider-config
