@@ -5,7 +5,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
   annotations:
-    machine-deployment.giantswarm.io/name: {{ include "resource.default.name" $ }}-{{ .name }}
+    machine-deployment.giantswarm.io/name: {{ .description | default ( printf "%s-%s" ( include "resource.default.name" $ ) ( .name ) ) | quote }}
   labels:
     giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}

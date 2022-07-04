@@ -28,22 +28,22 @@
         "controlPlane": {
             "type": "object",
             "properties": {
+                "containerdVolumeSizeGB": {
+                    "type": "integer"
+                },
+                "etcdVolumeSizeGB": {
+                    "type": "integer"
+                },
                 "instanceType": {
                     "type": "string"
+                },
+                "kubeletVolumeSizeGB": {
+                    "type": "integer"
                 },
                 "replicas": {
                     "type": "integer"
                 },
                 "rootVolumeSizeGB": {
-                    "type": "integer"
-                },
-		"etcdVolumeSizeGB": {
-                    "type": "integer"
-                },
-		"containerdVolumeSizeGB": {
-                    "type": "integer"
-                },
-		"kubeletVolumeSizeGB": {
                     "type": "integer"
                 },
                 "serviceAccount": {
@@ -104,6 +104,9 @@
             "items": {
                 "type": "object",
                 "properties": {
+                    "containerdVolumeSizeGB": {
+                        "type": "integer"
+                    },
                     "customNodeLabels": {
                         "type": "array"
                     },
@@ -113,6 +116,9 @@
                     "instanceType": {
                         "type": "string"
                     },
+                    "kubeletVolumeSizeGB": {
+                        "type": "integer"
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -120,12 +126,6 @@
                         "type": "integer"
                     },
                     "rootVolumeSizeGB": {
-                        "type": "integer"
-                    },
-                    "containerdVolumeSizeGB": {
-                        "type": "integer"
-                    },
-		    "kubeletVolumeSizeGB": {
                         "type": "integer"
                     }
                 }

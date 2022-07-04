@@ -9,8 +9,8 @@ vmImageBase: "https://www.googleapis.com/compute/v1/projects/giantswarm-vm-image
 
 gcp:
   region: "europe-west3"
-  project: "capi-test-phoenix"
-  failureDomains:
+  project: "capi-test-phoenix"  # GCP Project where the cluster will be created.
+  failureDomains:  # These will be the failure domains used for the control plane machines.
     - europe-west3-a
     - europe-west3-b
     - europe-west3-c
@@ -22,6 +22,7 @@ network:
     - "192.168.0.0/16"
   serviceCIDR: 172.31.0.0/16
 
+# A bastion host that will be used for SSH.
 bastion:
   enabled: true
   instanceType: n1-standard-2
@@ -41,8 +42,11 @@ controlPlane:
     scopes:
     - "https://www.googleapis.com/auth/compute"
 
+# machineDeployments lets you configure the different nodepools that will be created.
 machineDeployments:
 - name: def00
+  # The description is the name of the nodepool in GiantSwarm UIs. It's optional.
+  # description:
   failureDomain: europe-west3-a
   instanceType: n2-standard-4
   replicas: 1
@@ -52,6 +56,7 @@ machineDeployments:
   customNodeLabels: []
   # subnet:
 - name: def01
+  # description:
   failureDomain: europe-west3-b
   instanceType: n2-standard-4
   replicas: 1
@@ -61,6 +66,7 @@ machineDeployments:
   customNodeLabels: []
   # subnet:
 - name: def02
+  # description:
   failureDomain: europe-west3-c
   instanceType: n2-standard-4
   replicas: 1
