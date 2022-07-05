@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added tests to check coredns-adopter logic.
+
 ## [0.14.3] - 2022-07-01
 
 ### Added
