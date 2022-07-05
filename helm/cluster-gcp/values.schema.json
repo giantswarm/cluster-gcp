@@ -28,8 +28,17 @@
         "controlPlane": {
             "type": "object",
             "properties": {
+                "containerdVolumeSizeGB": {
+                    "type": "integer"
+                },
+                "etcdVolumeSizeGB": {
+                    "type": "integer"
+                },
                 "instanceType": {
                     "type": "string"
+                },
+                "kubeletVolumeSizeGB": {
+                    "type": "integer"
                 },
                 "replicas": {
                     "type": "integer"
@@ -95,6 +104,9 @@
             "items": {
                 "type": "object",
                 "properties": {
+                    "containerdVolumeSizeGB": {
+                        "type": "integer"
+                    },
                     "customNodeLabels": {
                         "type": "array"
                     },
@@ -103,6 +115,9 @@
                     },
                     "instanceType": {
                         "type": "string"
+                    },
+                    "kubeletVolumeSizeGB": {
+                        "type": "integer"
                     },
                     "name": {
                         "type": "string"

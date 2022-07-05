@@ -21,9 +21,8 @@ spec:
   template:
     metadata:
       labels:
-        cluster.x-k8s.io/cluster-name: {{ include "resource.default.name" $ }}
         cluster.x-k8s.io/deployment-name: {{ include "resource.default.name" $ }}-bastion
-        {{- include "labels.common" $ | nindent 8 }}
+        {{- include "labels.selector" $ | nindent 8 }}
     spec:
       bootstrap:
         configRef:

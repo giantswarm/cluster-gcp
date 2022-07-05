@@ -39,6 +39,7 @@ spec:
           audit-log-maxsize: "100"
           audit-log-path: /var/log/apiserver/audit.log
           audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
+          encryption-provider-config: /etc/kubernetes/encryption/config.yaml
           enable-admission-plugins: NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota,DefaultStorageClass,PersistentVolumeClaimResize,Priority,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,PodSecurityPolicy
           feature-gates: TTLAfterFinished=true
           kubelet-preferred-address-types: InternalIP
@@ -56,6 +57,11 @@ spec:
         - name: policies
           hostPath: /etc/kubernetes/policies
           mountPath: /etc/kubernetes/policies
+          readOnly: false
+          pathType: DirectoryOrCreate
+        - name: encryption
+          hostPath: /etc/kubernetes/encryption
+          mountPath: /etc/kubernetes/encryption
           readOnly: false
           pathType: DirectoryOrCreate
       controllerManager:
@@ -100,6 +106,8 @@ spec:
         kubeletExtraArgs:
           cloud-provider: gce
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+    preKubeadmCommands:
+    - /bin/bash /opt/init-disks.sh
     postKubeadmCommands:
     {{- include "sshPostKubeadmCommands" . | nindent 4 }}
     users:
@@ -121,6 +129,13 @@ spec:
       image: {{ include "vmImage" $ }}
       instanceType: {{ .Values.controlPlane.instanceType }}
       rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+      additionalDisks:
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.etcdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.containerdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .Values.controlPlane.kubeletVolumeSizeGB }}
       {{- if .Values.controlPlane.subnet }}
       subnet: {{ .Values.controlPlane.subnet }}
       {{- end}}

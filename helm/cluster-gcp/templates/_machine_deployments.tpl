@@ -5,7 +5,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
   annotations:
-    machine-deployment.giantswarm.io/name: {{ include "resource.default.name" $ }}-{{ .name }}
+    machine-deployment.giantswarm.io/name: {{ .description | default ( printf "%s-%s" ( include "resource.default.name" $ ) ( .name ) ) | quote }}
   labels:
     giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
@@ -18,6 +18,9 @@ spec:
   selector:
     matchLabels: null
   template:
+    metadata:
+      labels:
+        {{- include "labels.selector" $ | nindent 8 }}
     spec:
       bootstrap:
         configRef:
@@ -50,6 +53,11 @@ spec:
       image: {{ include "vmImage" $global }}
       instanceType: {{ .instanceType }}
       rootDeviceSize: {{ .rootVolumeSizeGB }}
+      additionalDisks:
+      - deviceType: pd-ssd
+        size: {{ .containerdVolumeSizeGB }}
+      - deviceType: pd-ssd
+        size: {{ .kubeletVolumeSizeGB }}
       {{- if .subnet }}
       subnet: {{ .subnet }}
       {{- end }}
@@ -76,6 +84,11 @@ spec:
             node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }}{{ if .customNodeLabels }},{{- join "," .customNodeLabels }}{{ end }}
             v: "2"
           name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+      files:
+      {{- include "sshFiles" $ | nindent 6 }}
+      {{- include "diskFiles" $ | nindent 6 }}
+      preKubeadmCommands:
+      - /bin/bash /opt/init-disks.sh
       postKubeadmCommands:
       {{- include "sshPostKubeadmCommands" . | nindent 6 }}
       users:
