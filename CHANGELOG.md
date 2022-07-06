@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated Kubernetes version to `v1.22.10`
+- Switched Ubuntu version to `2004`
+- Made GCP Project ID required (and defaulted to "")
+
 ### Added
 
 - Added tests to check coredns-adopter logic.

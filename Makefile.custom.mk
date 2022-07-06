@@ -12,7 +12,7 @@ render: architect
 # Instead we template the chart and apply ignoring errors.
 .PHONY: render
 deploy-rendered-chart: render
-	helm template $(shell pwd)/helm/rendered/cluster-gcp | kubectl apply --validate=false -f - || true
+	helm template $(shell pwd)/helm/rendered/cluster-gcp --set gcp.project="test-project" | kubectl apply --validate=false -f - || true
 
 .PHONY: create-acceptance-cluster
 create-acceptance-cluster: kind

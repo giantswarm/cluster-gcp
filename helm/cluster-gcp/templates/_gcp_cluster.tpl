@@ -18,7 +18,7 @@ spec:
     {{- end }}
     {{- end }}
   region: {{ .Values.gcp.region }}
-  project: {{ .Values.gcp.project }}
+  project: {{ required "You must provide the GCP Project ID" .Values.gcp.project }}
   failureDomains:
     {{- range .Values.gcp.failureDomains }}
     {{- if (hasPrefix $.Values.gcp.region .) }}
