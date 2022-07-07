@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Bumped default etcd version to avoid the 3.5.0 issues (See https://github.com/etcd-io/etcd/releases/tag/v3.5.0)
+- Made etcd version configurable via values
+
 ### Fixed
 
 - Moved custom make targets to correct Makefile
