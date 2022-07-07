@@ -31,6 +31,9 @@
                 "containerdVolumeSizeGB": {
                     "type": "integer"
                 },
+                "etcdVersion": {
+                    "type": "string"
+                },
                 "etcdVolumeSizeGB": {
                     "type": "integer"
                 },
