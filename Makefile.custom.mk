@@ -46,3 +46,17 @@ GOBIN=$(PROJECT_DIR)/bin go install $(2) ;\
 rm -rf $$TMP_DIR ;\
 }
 endef
+
+ensure-schema-gen:
+	@helm schema-gen --help &>/dev/null || helm plugin install https://github.com/mihaisee/helm-schema-gen.git
+
+.PHONY: schema-gen
+schema-gen: ensure-schema-gen ## Generates the values schema file
+	@cd helm/cluster-gcp && helm schema-gen values.yaml > values.schema.json
+
+.PHONY: update-chart-deps
+update-chart-deps: ## Update chart dependencies to latest (matching) version
+	@cd helm/cluster-gcp && \
+	sed -i.bk 's/version: \[\[ .Version \]\]/version: 1/' Chart.yaml && \
+	helm dependency update && \
+	mv Chart.yaml.bk Chart.yaml
