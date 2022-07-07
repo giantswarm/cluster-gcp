@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.1] - 2022-07-07
+
 ### Changed
 
 - Bumped default etcd version to avoid the 3.5.0 issues (See https://github.com/etcd-io/etcd/releases/tag/v3.5.0)
@@ -265,7 +267,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.15.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.15.1...HEAD
+[0.15.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.3...v0.15.0
 [0.14.3]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.2...v0.14.3
 [0.14.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.14.1...v0.14.2
