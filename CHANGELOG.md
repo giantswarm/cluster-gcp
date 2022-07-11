@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.16.0] - 2022-07-15
 
 ### Added
+
 - Add subnet whitelist for bastion SSH port 22.
 
 ### Changed
