@@ -17,8 +17,8 @@
                 "replicas": {
                    "type": "integer"
                 },
-		"whitelistSubnets": {
-		   "type": "string"
+                "whitelistSubnets": {
+                  "type": "string"
                 }
             }
         },
