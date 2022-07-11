@@ -15,8 +15,11 @@
                     "type": "string"
                 },
                 "replicas": {
-                    "type": "integer"
-                }
+                   "type": "integer"
+                },
+		"whitelistSubnets": {
+		   "type": "string"
+		}
             }
         },
         "clusterDescription": {

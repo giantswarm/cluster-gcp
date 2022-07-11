@@ -27,6 +27,7 @@ bastion:
   enabled: true
   instanceType: n1-standard-2
   replicas: 1
+  whitelistSubnets: "185.102.95.187/32,95.179.153.65/32"
   # subnet:
 
 controlPlane:
