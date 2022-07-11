@@ -19,7 +19,7 @@
                 },
 		"whitelistSubnets": {
 		   "type": "string"
-		}
+                }
             }
         },
         "clusterDescription": {
