@@ -41,7 +41,9 @@ controlPlane:
     email: "default"  # A service account used by the control-plane to set up LoadBalancer Services
     scopes:
     - "https://www.googleapis.com/auth/compute"
-  etcdVersion: 3.5.4-0
+  etcd:
+    imageRepository: "docker.io/giantswarm-k8s"
+    imageTag: 3.5.4-0
 
 # machineDeployments lets you configure the different nodepools that will be created.
 machineDeployments:
