@@ -31,8 +31,16 @@
                 "containerdVolumeSizeGB": {
                     "type": "integer"
                 },
-                "etcdVersion": {
-                    "type": "string"
+                "etcd": {
+                    "type": "object",
+                    "properties": {
+                        "imageRepository": {
+                            "type": "string"
+                        },
+                        "imageTag": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "etcdVolumeSizeGB": {
                     "type": "integer"

@@ -80,7 +80,8 @@ spec:
           bind-address: 0.0.0.0
       etcd:
         local:
-          imageTag: {{.Values.controlPlane.etcdVersion}}
+          imageRepository: {{.Values.controlPlane.etcd.imageRepository}}
+          imageTag: {{.Values.controlPlane.etcd.imageTag}}
           extraArgs:
             quota-backend-bytes: "8589934592"
       networking:

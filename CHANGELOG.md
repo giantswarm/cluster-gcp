@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Make etcd image registry customizable
+
 ## [0.15.1] - 2022-07-07
 
 ### Changed
