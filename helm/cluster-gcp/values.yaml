@@ -42,8 +42,8 @@ controlPlane:
     scopes:
     - "https://www.googleapis.com/auth/compute"
   etcd:
-    imageRepository: "docker.io/giantswarm/etcd-k8s"
-    imageTag: 3.5.4-0
+    imageRepository: "docker.io/giantswarm"
+    imageTag: 3.5.4-0-k8s
 
 # machineDeployments lets you configure the different nodepools that will be created.
 machineDeployments:
