@@ -3,67 +3,104 @@
     "type": "object",
     "properties": {
         "baseDomain": {
-            "type": "string"
+            "title": "Base domain",
+            "type": "string",
+            "description": "This will be the suffix of your cluster's domain name.",
+            "format": "hostname"
         },
         "bastion": {
+            "title": "Bastion host",
+            "description": "One or several gateway machine(s) to use for SSH access to the cluster.",
             "type": "object",
             "properties": {
                 "enabled": {
+                    "title": "Enabled",
                     "type": "boolean"
                 },
                 "instanceType": {
-                    "type": "string"
+                    "title": "Machine type",
+                    "type": "string",
+                    "pattern": "([a-z0-9]{2,})-([a-z]{3,})-([0-9]+)"
                 },
                 "replicas": {
-                    "type": "integer"
+                    "title": "Number of hosts",
+                    "type": "integer",
+                    "minimum": 1
                 }
             }
         },
         "clusterDescription": {
-            "type": "string"
+            "title": "User-friendly cluster description",
+            "type": "string",
+            "maxLength": 255
         },
         "clusterName": {
-            "type": "string"
+            "title": "Cluster name (immutable)",
+            "type": "string",
+            "maxLength": 10,
+            "pattern": "[-a-z0-9]{5,10}"
         },
         "controlPlane": {
+            "title": "Control plane",
             "type": "object",
             "properties": {
                 "containerdVolumeSizeGB": {
-                    "type": "integer"
+                    "title": "Containerd volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "etcd": {
+                    "title": "Etcd container image",
                     "type": "object",
                     "properties": {
                         "imageRepository": {
+                            "title": "Repository",
                             "type": "string"
                         },
                         "imageTag": {
+                            "title": "Tag",
                             "type": "string"
                         }
                     }
                 },
                 "etcdVolumeSizeGB": {
-                    "type": "integer"
+                    "title": "Etcd volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "instanceType": {
+                    "title": "Machine type",
+                    "description": "GCP machine type to use for all control plain nodes.",
                     "type": "string"
                 },
                 "kubeletVolumeSizeGB": {
-                    "type": "integer"
+                    "title": "Kubelet volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "replicas": {
-                    "type": "integer"
+                    "title": "Number of control plane nodes",
+                    "description": "TODO: Describe which values are valid.",
+                    "type": "integer",
+                    "minimum": 1
                 },
                 "rootVolumeSizeGB": {
-                    "type": "integer"
+                    "title": "Root volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "serviceAccount": {
+                    "title": "Service account",
+                    "description": "GCP service account to use for managing control plane nodes.",
                     "type": "object",
                     "properties": {
                         "email": {
-                            "type": "string"
+                            "title": "Email",
+                            "type": "string",
+                            "default": "default"
                         },
                         "scopes": {
+                            "title": "Scopes",
                             "type": "array",
                             "items": {
                                 "type": "string"
@@ -74,124 +111,176 @@
             }
         },
         "gcp": {
+            "title": "GCP details",
             "type": "object",
             "properties": {
                 "failureDomains": {
+                    "title": "Zones",
+                    "description": "TODO: Explain what this property does.",
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
                 },
                 "project": {
+                    "title": "Billing project ID",
                     "type": "string"
                 },
                 "region": {
-                    "type": "string"
+                    "title": "Region",
+                    "type": "string",
+                    "pattern": "([a-z]{3,})-([a-z0-9]{3,})"
                 }
             }
         },
         "includeClusterResourceSet": {
+            "title": "Include cluster resource set",
+            "description": "TODO: add description for includeClusterResourceSet",
             "type": "boolean"
         },
         "kubectlImage": {
+            "title": "kubectl container image",
             "type": "object",
             "properties": {
                 "name": {
+                    "title": "Name",
                     "type": "string"
                 },
                 "registry": {
+                    "title": "Registry",
                     "type": "string"
                 },
                 "tag": {
+                    "title": "Tag",
                     "type": "string"
                 }
             }
         },
         "kubernetesVersion": {
+            "title": "Kubernetes version",
             "type": "string"
         },
         "machineDeployments": {
+            "title": "Node pools",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "containerdVolumeSizeGB": {
-                        "type": "integer"
+                        "title": "Containerd volume size (in GB)",
+                        "type": "integer",
+                        "minimum": 0
                     },
                     "customNodeLabels": {
-                        "type": "array"
+                        "title": "Node labels",
+                        "description": "TODO: explain custom node labels",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
                     },
                     "failureDomain": {
+                        "title": "Zone",
                         "type": "string"
                     },
                     "instanceType": {
+                        "title": "Machine type",
                         "type": "string"
                     },
                     "kubeletVolumeSizeGB": {
-                        "type": "integer"
+                        "title": "Kubelet volume size (in GB)",
+                        "type": "integer",
+                        "minimum": 0
                     },
                     "name": {
-                        "type": "string"
+                        "title": "Name",
+                        "type": "string",
+                        "maxLength": 10
                     },
                     "replicas": {
-                        "type": "integer"
+                        "title": "Number of worker nodes",
+                        "type": "integer",
+                        "minimum": 0
                     },
                     "rootVolumeSizeGB": {
-                        "type": "integer"
+                        "title": "Root volume size (in GB)",
+                        "type": "integer",
+                        "minimum": 0
                     }
                 }
             }
         },
         "network": {
+            "title": "Network",
             "type": "object",
             "properties": {
                 "autoCreateSubnetworks": {
-                    "type": "boolean"
+                    "title": "Create sub networks automatically",
+                    "type": "boolean",
+                    "default": true
                 },
                 "nodeSubnetCidrs": {
-                    "type": "array"
+                    "title": "Node subnet CIDR blocks",
+                    "type": "array",
+                    "items": {
+                       "type": "string"
+                    }
                 },
                 "podCidr": {
+                    "title": "Pod subnet CIDR blocks",
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
                 },
                 "serviceCIDR": {
+                    "title": "Services subnet CIDR block",
                     "type": "string"
                 }
             }
         },
         "oidc": {
+            "title": "OIDC",
+            "description": "Settings for OIDC authentication to the cluster's Kubernetes API",
             "type": "object",
             "properties": {
                 "caFile": {
+                    "title": "Certificate authority (CA) certificate PEM",
                     "type": "string"
                 },
                 "clientId": {
+                    "title": "Client ID",
                     "type": "string"
                 },
                 "groupsClaim": {
-                    "type": "string"
+                    "title": "Groups claim",
+                    "type": "string",
+                    "default": "groups"
                 },
                 "issuerUrl": {
+                    "title": "Issuer URL",
                     "type": "string"
                 },
                 "usernameClaim": {
+                    "title": "Username claim",
                     "type": "string"
                 }
             }
         },
         "organization": {
+            "title": "Organization",
             "type": "string"
         },
         "sshSSOPublicKey": {
+            "title": "SSH public key",
             "type": "string"
         },
         "ubuntuImageVersion": {
+            "title": "Ubuntu image version",
             "type": "string"
         },
         "vmImageBase": {
+            "title": "Node image base",
             "type": "string"
         }
     }
