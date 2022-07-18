@@ -20,12 +20,14 @@
                 "instanceType": {
                     "title": "Machine type",
                     "type": "string",
-                    "pattern": "([a-z0-9]{2,})-([a-z]{3,})-([0-9]+)"
+                    "pattern": "([a-z0-9]{2,})-([a-z]{3,})-([0-9]+)",
+                    "default": "n1-standard-2"
                 },
                 "replicas": {
                     "title": "Number of hosts",
                     "type": "integer",
-                    "minimum": 1
+                    "minimum": 1,
+                    "default": 1
                 }
             }
         },
@@ -158,7 +160,8 @@
         },
         "kubernetesVersion": {
             "title": "Kubernetes version",
-            "type": "string"
+            "type": "string",
+            "default": "1.22.10"
         },
         "machineDeployments": {
             "title": "Node pools",
