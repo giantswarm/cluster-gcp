@@ -1,6 +1,15 @@
 {
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
+    "definitions": {
+        "machineType": {
+            "title": "Re-usable machine type",
+            "description": "GCP machine type to use for all control plain nodes.",
+            "type": "string",
+            "default": "n2-standard-4",
+            "enum": ["c2-standard-4", "c2-standard-8", "c2-standard-16", "c2-standard-30", "c2-standard-60", "e2-medium", "e2-standard-2", "e2-highmem-2", "e2-highcpu-4", "e2-standard-4", "e2-highmem-4", "e2-highcpu-8", "e2-standard-8", "e2-highmem-8", "e2-highcpu-16", "e2-standard-16", "e2-highmem-16", "e2-highcpu-32", "e2-standard-32", "m1-ultramem-40", "m1-ultramem-80", "m1-megamem-96", "m1-ultramem-160", "m2-ultramem-208", "m2-megamem-416", "m2-ultramem-416", "n1-standard-2", "n1-highmem-2", "n1-standard-4", "n1-highmem-4", "n1-highcpu-8", "n1-standard-8", "n1-highmem-8", "n1-highcpu-16", "n1-standard-16", "n1-highmem-16", "n1-highcpu-32", "n1-standard-32", "n1-highmem-32", "n1-ultramem-40", "n1-highcpu-64", "n1-standard-64", "n1-highmem-64", "n1-ultramem-80", "n1-highcpu-96", "n1-standard-96", "n1-highmem-96", "n1-megamem-96", "n1-ultramem-160", "n2-standard-2", "n2-highmem-2", "n2-highcpu-4", "n2-standard-4", "n2-highmem-4", "n2-highcpu-8", "n2-standard-8", "n2-highmem-8", "n2-highcpu-16", "n2-standard-16", "n2-highmem-16", "n2-highcpu-32", "n2-standard-32", "n2-highmem-32", "n2-highcpu-48", "n2-standard-48", "n2-highmem-48", "n2-highcpu-64", "n2-standard-64", "n2-highmem-64", "n2-highcpu-80", "n2-standard-80", "n2-highmem-80", "n2-highcpu-96", "n2-standard-96", "n2-highmem-96", "n2-standard-128", "n2-highmem-128", "n2d-standard-2", "n2d-highmem-2", "n2d-highcpu-4", "n2d-standard-4", "n2d-highmem-4", "n2d-highcpu-8", "n2d-standard-8", "n2d-highmem-8", "n2d-highcpu-16", "n2d-standard-16", "n2d-highmem-16", "n2d-highcpu-32", "n2d-standard-32", "n2d-highmem-32", "n2d-highcpu-48", "n2d-standard-48", "n2d-highmem-48", "n2d-highcpu-64", "n2d-standard-64", "n2d-highmem-64", "n2d-highcpu-80", "n2d-standard-80", "n2d-highmem-80", "n2d-highcpu-96", "n2d-standard-96", "n2d-highmem-96", "n2d-highcpu-128", "n2d-standard-128", "n2d-highcpu-224", "n2d-standard-224", "t2d-standard-2", "t2d-standard-4", "t2d-standard-8", "t2d-standard-16", "t2d-standard-32", "t2d-standard-48", "t2d-standard-60"]
+        }
+    },
     "properties": {
         "clusterName": {
             "title": "Cluster name",
@@ -70,11 +79,7 @@
                     "default": 3
                 },
                 "instanceType": {
-                    "title": "Machine type",
-                    "description": "GCP machine type to use for all control plain nodes.",
-                    "type": "string",
-                    "default": "n2-standard-4",
-                    "enum": ["n1-standard-2", "n1-standard-4", "n1-standard-8", "TODO"]
+                    "$ref": "#/definitions/machineType"
                 },
                 "serviceAccount": {
                     "title": "Service account",
@@ -150,11 +155,7 @@
                     "default": true
                 },
                 "instanceType": {
-                    "title": "Machine type",
-                    "type": "string",
-                    "pattern": "([a-z0-9]{2,})-([a-z]{3,})-([0-9]+)",
-                    "default": "n1-standard-2",
-                    "enum": ["n1-standard-2", "n1-standard-4", "n1-standard-8", "TODO"]
+                    "$ref": "#/definitions/machineType"
                 },
                 "replicas": {
                     "title": "Number of hosts",
@@ -248,9 +249,7 @@
                         "type": "string"
                     },
                     "instanceType": {
-                        "title": "Machine type",
-                        "type": "string",
-                        "enum": ["n1-standard-2", "n1-standard-4", "n1-standard-8", "TODO"]
+                        "$ref": "#/definitions/machineType"
                     },
                     "kubeletVolumeSizeGB": {
                         "title": "Kubelet volume size (in GB)",
