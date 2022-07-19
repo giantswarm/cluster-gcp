@@ -268,7 +268,7 @@
         },
         "includeClusterResourceSet": {
             "title": "Include cluster resource set",
-            "description": "TODO: add description for includeClusterResourceSet",
+            "description": "Used by the `cluster-shared` library chart",
             "type": "boolean",
             "default": true
         },
