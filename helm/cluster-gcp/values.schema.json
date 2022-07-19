@@ -23,7 +23,8 @@
         },
         "organization": {
             "title": "Organization",
-            "type": "string"
+            "type": "string",
+            "description": "Name of the organization owning the cluster."
         },
         "kubernetesVersion": {
             "title": "Kubernetes version",
@@ -31,7 +32,7 @@
             "default": "1.22.10"
         },
         "gcp": {
-            "title": "GCP details",
+            "title": "Google Cloud Platform details",
             "type": "object",
             "properties": {
                 "project": {
@@ -47,7 +48,7 @@
                 },
                 "failureDomains": {
                     "title": "Zones",
-                    "description": "TODO: Explain what this property does.",
+                    "description": "Zones used by control plane nodes. More zones mean lower risk of failure, but also increase cost for cross-zone network traffic.",
                     "type": "array",
                     "items": {
                         "type": "string",
