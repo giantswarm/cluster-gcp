@@ -1,198 +1,320 @@
 {
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
+    "definitions": {
+        "machineType": {
+            "title": "Re-usable machine type",
+            "description": "GCP machine type to use for all control plain nodes.",
+            "type": "string",
+            "default": "n2-standard-4",
+            "enum": ["c2-standard-4", "c2-standard-8", "c2-standard-16", "c2-standard-30", "c2-standard-60", "e2-medium", "e2-standard-2", "e2-highmem-2", "e2-highcpu-4", "e2-standard-4", "e2-highmem-4", "e2-highcpu-8", "e2-standard-8", "e2-highmem-8", "e2-highcpu-16", "e2-standard-16", "e2-highmem-16", "e2-highcpu-32", "e2-standard-32", "m1-ultramem-40", "m1-ultramem-80", "m1-megamem-96", "m1-ultramem-160", "m2-ultramem-208", "m2-megamem-416", "m2-ultramem-416", "n1-standard-2", "n1-highmem-2", "n1-standard-4", "n1-highmem-4", "n1-highcpu-8", "n1-standard-8", "n1-highmem-8", "n1-highcpu-16", "n1-standard-16", "n1-highmem-16", "n1-highcpu-32", "n1-standard-32", "n1-highmem-32", "n1-ultramem-40", "n1-highcpu-64", "n1-standard-64", "n1-highmem-64", "n1-ultramem-80", "n1-highcpu-96", "n1-standard-96", "n1-highmem-96", "n1-megamem-96", "n1-ultramem-160", "n2-standard-2", "n2-highmem-2", "n2-highcpu-4", "n2-standard-4", "n2-highmem-4", "n2-highcpu-8", "n2-standard-8", "n2-highmem-8", "n2-highcpu-16", "n2-standard-16", "n2-highmem-16", "n2-highcpu-32", "n2-standard-32", "n2-highmem-32", "n2-highcpu-48", "n2-standard-48", "n2-highmem-48", "n2-highcpu-64", "n2-standard-64", "n2-highmem-64", "n2-highcpu-80", "n2-standard-80", "n2-highmem-80", "n2-highcpu-96", "n2-standard-96", "n2-highmem-96", "n2-standard-128", "n2-highmem-128", "n2d-standard-2", "n2d-highmem-2", "n2d-highcpu-4", "n2d-standard-4", "n2d-highmem-4", "n2d-highcpu-8", "n2d-standard-8", "n2d-highmem-8", "n2d-highcpu-16", "n2d-standard-16", "n2d-highmem-16", "n2d-highcpu-32", "n2d-standard-32", "n2d-highmem-32", "n2d-highcpu-48", "n2d-standard-48", "n2d-highmem-48", "n2d-highcpu-64", "n2d-standard-64", "n2d-highmem-64", "n2d-highcpu-80", "n2d-standard-80", "n2d-highmem-80", "n2d-highcpu-96", "n2d-standard-96", "n2d-highmem-96", "n2d-highcpu-128", "n2d-standard-128", "n2d-highcpu-224", "n2d-standard-224", "t2d-standard-2", "t2d-standard-4", "t2d-standard-8", "t2d-standard-16", "t2d-standard-32", "t2d-standard-48", "t2d-standard-60"]
+        }
+    },
     "properties": {
-        "baseDomain": {
-            "type": "string"
+        "clusterName": {
+            "title": "Cluster name",
+            "description": "Technical identifier for this cluster. Cannot be changed after creation.",
+            "type": "string",
+            "maxLength": 10,
+            "pattern": "[-a-z0-9]{5,10}"
         },
-        "bastion": {
+        "clusterDescription": {
+            "title": "Description",
+            "description": "User-friendly description of the cluster's purpose.",
+            "type": "string",
+            "maxLength": 255
+        },
+        "baseDomain": {
+            "title": "Base domain",
+            "type": "string",
+            "description": "This will be the suffix of your cluster's domain name.",
+            "format": "hostname"
+        },
+        "organization": {
+            "title": "Organization",
+            "type": "string",
+            "description": "Name of the organization owning the cluster."
+        },
+        "kubernetesVersion": {
+            "title": "Kubernetes version",
+            "type": "string",
+            "default": "1.22.10"
+        },
+        "gcp": {
+            "title": "Google Cloud Platform details",
             "type": "object",
             "properties": {
-                "enabled": {
-                    "type": "boolean"
+                "project": {
+                    "title": "Billing project ID",
+                    "type": "string",
+                    "pattern": "[^\\s]+"
                 },
-                "instanceType": {
-                    "type": "string"
+                "region": {
+                    "title": "Region",
+                    "type": "string",
+                    "pattern": "([a-z]{3,})-([a-z0-9]{3,})",
+                    "default": "europe-west3"
                 },
-                "replicas": {
-                    "type": "integer"
+                "failureDomains": {
+                    "title": "Zones",
+                    "description": "Zones used by control plane nodes. More zones mean lower risk of failure, but also increase cost for cross-zone network traffic.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "([a-z]{3,})-([a-z0-9]{3,})"
+                    }
                 }
             }
         },
-        "clusterDescription": {
-            "type": "string"
-        },
-        "clusterName": {
-            "type": "string"
-        },
         "controlPlane": {
+            "title": "Control plane",
             "type": "object",
             "properties": {
-                "containerdVolumeSizeGB": {
-                    "type": "integer"
-                },
-                "etcd": {
-                    "type": "object",
-                    "properties": {
-                        "imageRepository": {
-                            "type": "string"
-                        },
-                        "imageTag": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "etcdVolumeSizeGB": {
-                    "type": "integer"
+                "replicas": {
+                    "title": "Number of control plane nodes",
+                    "description": "TODO: Describe which values are valid.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 3
                 },
                 "instanceType": {
-                    "type": "string"
-                },
-                "kubeletVolumeSizeGB": {
-                    "type": "integer"
-                },
-                "replicas": {
-                    "type": "integer"
-                },
-                "rootVolumeSizeGB": {
-                    "type": "integer"
+                    "$ref": "#/definitions/machineType"
                 },
                 "serviceAccount": {
+                    "title": "Service account",
+                    "description": "GCP service account to use for managing control plane nodes.",
                     "type": "object",
                     "properties": {
                         "email": {
-                            "type": "string"
+                            "title": "Email",
+                            "type": "string",
+                            "default": "default"
                         },
                         "scopes": {
+                            "title": "Scopes",
                             "type": "array",
+                            "uniqueItems": true,
                             "items": {
                                 "type": "string"
-                            }
+                            },
+                            "default": ["https://www.googleapis.com/auth/compute"]
+                        }
+                    }
+                },
+                "rootVolumeSizeGB": {
+                    "title": "Root volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 100
+                },
+                "kubeletVolumeSizeGB": {
+                    "title": "Kubelet volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 100
+                },
+                "containerdVolumeSizeGB": {
+                    "title": "Containerd volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 100
+                },
+                "etcdVolumeSizeGB": {
+                    "title": "Etcd volume size (in GB)",
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 100
+                },
+                "etcd": {
+                    "title": "Etcd container image",
+                    "type": "object",
+                    "properties": {
+                        "imageRepository": {
+                            "title": "Repository",
+                            "type": "string",
+                            "default": "docker.io/giantswarm"
+                        },
+                        "imageTag": {
+                            "title": "Tag",
+                            "type": "string",
+                            "default": "3.5.4-0-k8s"
                         }
                     }
                 }
             }
         },
-        "gcp": {
+        "bastion": {
+            "title": "Bastion host",
+            "description": "One or several gateway machine(s) to use for SSH access to the cluster.",
             "type": "object",
             "properties": {
-                "failureDomains": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                "enabled": {
+                    "title": "Enabled",
+                    "type": "boolean",
+                    "default": true
                 },
-                "project": {
-                    "type": "string"
+                "instanceType": {
+                    "$ref": "#/definitions/machineType"
                 },
-                "region": {
-                    "type": "string"
-                }
-            }
-        },
-        "includeClusterResourceSet": {
-            "type": "boolean"
-        },
-        "kubectlImage": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "registry": {
-                    "type": "string"
-                },
-                "tag": {
-                    "type": "string"
-                }
-            }
-        },
-        "kubernetesVersion": {
-            "type": "string"
-        },
-        "machineDeployments": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "containerdVolumeSizeGB": {
-                        "type": "integer"
-                    },
-                    "customNodeLabels": {
-                        "type": "array"
-                    },
-                    "failureDomain": {
-                        "type": "string"
-                    },
-                    "instanceType": {
-                        "type": "string"
-                    },
-                    "kubeletVolumeSizeGB": {
-                        "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "replicas": {
-                        "type": "integer"
-                    },
-                    "rootVolumeSizeGB": {
-                        "type": "integer"
-                    }
+                "replicas": {
+                    "title": "Number of hosts",
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1
                 }
             }
         },
         "network": {
+            "title": "Network",
             "type": "object",
             "properties": {
                 "autoCreateSubnetworks": {
-                    "type": "boolean"
+                    "title": "Create sub networks automatically",
+                    "type": "boolean",
+                    "default": true
                 },
                 "nodeSubnetCidrs": {
-                    "type": "array"
+                    "title": "Node subnet CIDR blocks",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                       "type": "string"
+                    }
                 },
                 "podCidr": {
+                    "title": "Pod subnet CIDR blocks",
                     "type": "array",
+                    "uniqueItems": true,
                     "items": {
                         "type": "string"
                     }
                 },
                 "serviceCIDR": {
+                    "title": "Services subnet CIDR block",
                     "type": "string"
                 }
             }
         },
         "oidc": {
+            "title": "OIDC",
+            "description": "Settings for OIDC authentication to the cluster's Kubernetes API",
             "type": "object",
             "properties": {
                 "caFile": {
+                    "title": "Certificate authority (CA) certificate PEM",
                     "type": "string"
                 },
                 "clientId": {
+                    "title": "Client ID",
                     "type": "string"
                 },
                 "groupsClaim": {
-                    "type": "string"
+                    "title": "Groups claim",
+                    "type": "string",
+                    "default": "groups"
                 },
                 "issuerUrl": {
+                    "title": "Issuer URL",
                     "type": "string"
                 },
                 "usernameClaim": {
+                    "title": "Username claim",
                     "type": "string"
                 }
             }
         },
-        "organization": {
-            "type": "string"
+        "machineDeployments": {
+            "title": "Node pools",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "containerdVolumeSizeGB": {
+                        "title": "Containerd volume size (in GB)",
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "customNodeLabels": {
+                        "title": "Node labels",
+                        "description": "TODO: explain custom node labels",
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string"
+                        }
+                    },
+                    "failureDomain": {
+                        "title": "Zone",
+                        "type": "string"
+                    },
+                    "instanceType": {
+                        "$ref": "#/definitions/machineType"
+                    },
+                    "kubeletVolumeSizeGB": {
+                        "title": "Kubelet volume size (in GB)",
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "maxLength": 10
+                    },
+                    "replicas": {
+                        "title": "Number of worker nodes",
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "rootVolumeSizeGB": {
+                        "title": "Root volume size (in GB)",
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                }
+            }
+        },
+        "includeClusterResourceSet": {
+            "title": "Include cluster resource set",
+            "description": "Used by the `cluster-shared` library chart",
+            "type": "boolean",
+            "default": true
+        },
+        "kubectlImage": {
+            "title": "kubectl container image",
+            "type": "object",
+            "properties": {
+                "registry": {
+                    "title": "Registry",
+                    "type": "string",
+                    "default": "quay.io"
+                },
+                "name": {
+                    "title": "Repository",
+                    "type": "string",
+                    "default": "giantswarm/kubectl"
+                },
+                "tag": {
+                    "title": "Tag",
+                    "type": "string",
+                    "default": "1.23.5"
+                }
+            }
         },
         "sshSSOPublicKey": {
-            "type": "string"
+            "title": "SSH public key",
+            "type": "string",
+            "default": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"
         },
         "ubuntuImageVersion": {
-            "type": "string"
+            "title": "Ubuntu image version",
+            "type": "string",
+            "default": "2004"
         },
         "vmImageBase": {
-            "type": "string"
+            "title": "Node image base",
+            "type": "string",
+            "default": "https://www.googleapis.com/compute/v1/projects/giantswarm-vm-images/global/images/"
         }
     }
 }
