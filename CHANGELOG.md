@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.17.0] - 2022-07-20
 
-## [0.16.0] - 2022-07-15
-
 ### Added
 
 - Add subnet allowlist for bastion SSH port 22.
+
+## [0.16.0] - 2022-07-15
 
 ### Changed
 
