@@ -3,7 +3,7 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: GCPCluster
 metadata:
   annotations:
-    bastion.gcp.giantswarm.io/whitelist: {{ .Values.bastion.whitelistSubnets }}
+    bastion.gcp.giantswarm.io/allowlist: {{ .Values.bastion.allowlistSubnets }}
   labels:
     {{- include "labels.common" $ | nindent 4 }}
   name: {{ include "resource.default.name" $ }}

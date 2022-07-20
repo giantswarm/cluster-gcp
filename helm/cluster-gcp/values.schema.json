@@ -8,6 +8,9 @@
         "bastion": {
             "type": "object",
             "properties": {
+                "allowlistSubnets": {
+                    "type": "string"
+                },
                 "enabled": {
                     "type": "boolean"
                 },
@@ -15,10 +18,7 @@
                     "type": "string"
                 },
                 "replicas": {
-                   "type": "integer"
-                },
-                "whitelistSubnets": {
-                  "type": "string"
+                    "type": "integer"
                 }
             }
         },
