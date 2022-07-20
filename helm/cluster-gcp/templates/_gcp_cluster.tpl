@@ -17,6 +17,7 @@ spec:
     {{- range .Values.network.nodeSubnetCidrs }}
     - cidrBlock: {{ . }}
       region: {{ $.Values.gcp.region }}
+      routeTableId: false
     {{- end }}
     {{- end }}
   region: {{ .Values.gcp.region }}
