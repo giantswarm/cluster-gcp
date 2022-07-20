@@ -91,7 +91,6 @@ room for such suffix.
       key: encryption
 {{- end -}}
 
-
 {{- define "sshPostKubeadmCommands" -}}
 - systemctl restart sshd
 {{- end -}}
@@ -110,7 +109,17 @@ room for such suffix.
 {{ .Values.vmImageBase }}cluster-api-ubuntu-{{ .Values.ubuntuImageVersion }}-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
 {{- end -}}
 
-
 {{- define "hash" -}}
 {{- mustToJson . | toString | quote | sha1sum | trunc 8 }}
+{{- end -}}
+
+{{- define "kubeProxyFiles" }}
+- path: /etc/gs-kube-proxy-config.yaml
+  permissions: "0600"
+  content: |
+    {{- .Files.Get "files/etc/gs-kube-proxy-config.yaml" | nindent 4 }}
+- path: /etc/gs-kube-proxy-patch.sh
+  permissions: "0700"
+  content: |
+    {{- .Files.Get "files/etc/gs-kube-proxy-patch.sh" | nindent 4 }}
 {{- end -}}
