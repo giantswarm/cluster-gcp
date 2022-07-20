@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.16.0] - 2022-07-15
 
+### Added
+
+- Add subnet allowlist for bastion SSH port 22.
+
 ### Changed
 
 - Make etcd image registry customizable
@@ -16,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Use correct etcd image details
+
 
 ## [0.15.1] - 2022-07-07
 
