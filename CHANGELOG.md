@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Order `kubeadm` extraFlags alphabetically.
 - Set `logtostderr: "true"` to `controller-manager`.
 - Make `etcd` metrics endpoint accessible.
+- Expose `kube-proxy` metrics.
 
 ## [0.18.0] - 2022-07-20
 
