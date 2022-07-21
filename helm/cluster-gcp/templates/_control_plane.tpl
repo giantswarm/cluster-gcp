@@ -117,7 +117,7 @@ spec:
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
     preKubeadmCommands:
     - /bin/bash /opt/init-disks.sh
-    - /bin/bash /opt/gs-kube-proxy-patch.sh
+    - /bin/bash /etc/gs-kube-proxy-patch.sh
     postKubeadmCommands:
     {{- include "sshPostKubeadmCommands" . | nindent 4 }}
     users:
