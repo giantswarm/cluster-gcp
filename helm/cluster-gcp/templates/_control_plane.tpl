@@ -22,7 +22,17 @@ spec:
         certSANs:
           - "api.{{ include "resource.default.name" $ }}.{{ .Values.baseDomain }}"
         extraArgs:
+          audit-log-maxage: "30"
+          audit-log-maxbackup: "30"
+          audit-log-maxsize: "100"
+          audit-log-path: /var/log/apiserver/audit.log
+          audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
           cloud-provider: gce
+          enable-admission-plugins: NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota,DefaultStorageClass,PersistentVolumeClaimResize,Priority,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,PodSecurityPolicy
+          encryption-provider-config: /etc/kubernetes/encryption/config.yaml
+          feature-gates: TTLAfterFinished=true
+          kubelet-preferred-address-types: InternalIP
+          logtostderr: "true"
           {{- if .Values.oidc.issuerUrl }}
           {{- with .Values.oidc }}
           oidc-issuer-url: {{ .issuerUrl }}
@@ -34,20 +44,11 @@ spec:
           {{- end }}
           {{- end }}
           {{- end }}
-          audit-log-maxage: "30"
-          audit-log-maxbackup: "30"
-          audit-log-maxsize: "100"
-          audit-log-path: /var/log/apiserver/audit.log
-          audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
-          encryption-provider-config: /etc/kubernetes/encryption/config.yaml
-          enable-admission-plugins: NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota,DefaultStorageClass,PersistentVolumeClaimResize,Priority,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,PodSecurityPolicy
-          feature-gates: TTLAfterFinished=true
-          kubelet-preferred-address-types: InternalIP
           profiling: "false"
           runtime-config: api/all=true,scheduling.k8s.io/v1alpha1=true
           service-account-lookup: "true"
-          tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256
           service-cluster-ip-range: {{ .Values.network.serviceCIDR }}
+          tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256
         extraVolumes:
         - name: auditlog
           hostPath: /var/log/apiserver
@@ -67,9 +68,12 @@ spec:
       controllerManager:
         extraArgs:
           allocate-node-cidrs: "false"
+          authorization-always-allow-paths: "/healthz,/readyz,/livez,/metrics"
           bind-address: 0.0.0.0
           cloud-provider: gce
           cloud-config: /etc/kubernetes/gcp.conf
+          logtostderr: "true"
+          profiling: "false"
         extraVolumes:
         - hostPath: /etc/kubernetes/gcp.conf
           mountPath: /etc/kubernetes/gcp.conf
@@ -77,12 +81,14 @@ spec:
           readOnly: true
       scheduler:
         extraArgs:
+          authorization-always-allow-paths: "/healthz,/readyz,/livez,/metrics"
           bind-address: 0.0.0.0
       etcd:
         local:
           imageRepository: {{.Values.controlPlane.etcd.imageRepository}}
           imageTag: {{.Values.controlPlane.etcd.imageTag}}
           extraArgs:
+            listen-metrics-urls: "http://0.0.0.0:2381"
             quota-backend-bytes: "8589934592"
       networking:
         serviceSubnet: {{ .Values.network.serviceCIDR }}
