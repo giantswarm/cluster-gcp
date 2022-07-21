@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set `logtostderr: "true"` to `controller-manager`.
 - Make `etcd` metrics endpoint accessible.
 - Expose `kube-proxy` metrics.
+- Remove `scheduling.k8s.io/v1alpha1=true` from `runtime-config` because it's already included on `api/all=true`.
 
 ## [0.18.0] - 2022-07-20
 

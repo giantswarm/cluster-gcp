@@ -28,7 +28,7 @@ spec:
           audit-log-path: /var/log/apiserver/audit.log
           audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
           cloud-provider: gce
-          enable-admission-plugins: NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota,DefaultStorageClass,PersistentVolumeClaimResize,Priority,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,PodSecurityPolicy
+          enable-admission-plugins: NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota,PersistentVolumeClaimResize,DefaultStorageClass,Priority,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,PodSecurityPolicy
           encryption-provider-config: /etc/kubernetes/encryption/config.yaml
           feature-gates: TTLAfterFinished=true
           kubelet-preferred-address-types: InternalIP
@@ -45,7 +45,7 @@ spec:
           {{- end }}
           {{- end }}
           profiling: "false"
-          runtime-config: api/all=true,scheduling.k8s.io/v1alpha1=true
+          runtime-config: api/all=true
           service-account-lookup: "true"
           service-cluster-ip-range: {{ .Values.network.serviceCIDR }}
           tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256
