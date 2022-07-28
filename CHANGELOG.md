@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- `replicas` value from `controlPlane` no longer configurable - always set to 3 for HA
+
 ## [0.19.1] - 2022-07-22
 
 ### Fixed
