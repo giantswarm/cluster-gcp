@@ -92,6 +92,7 @@ spec:
             quota-backend-bytes: "8589934592"
       networking:
         serviceSubnet: {{ .Values.network.serviceCIDR }}
+      certificatesDir: /etc/kubernetes/ssl
     files:
     {{- include "sshFiles" . | nindent 4 }}
     {{- include "diskFiles" . | nindent 4 }}

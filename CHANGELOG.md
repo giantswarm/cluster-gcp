@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Set certificates directory to `/etc/kubernetes/ssl` in KubeadmControlPanel `clusterConfiguration`.
+
 ## [0.20.0] - 2022-07-28
 
 ### Removed
