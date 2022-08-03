@@ -73,6 +73,8 @@ metadata:
 spec:
   template:
     spec:
+      clusterConfiguration:
+        certificatesDir: /etc/kubernetes/ssl
       joinConfiguration:
         discovery: {}
         nodeRegistration:
