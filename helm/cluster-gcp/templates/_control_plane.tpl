@@ -112,6 +112,7 @@ spec:
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
     joinConfiguration:
       discovery: {}
+      caCertPath: /etc/kubernetes/ssl/ca.crt
       nodeRegistration:
         kubeletExtraArgs:
           cloud-provider: gce

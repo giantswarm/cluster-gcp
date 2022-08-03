@@ -77,6 +77,7 @@ spec:
         certificatesDir: /etc/kubernetes/ssl
       joinConfiguration:
         discovery: {}
+        caCertPath: /etc/kubernetes/ssl/ca.crt
         nodeRegistration:
           kubeletExtraArgs:
             cloud-provider: gce
