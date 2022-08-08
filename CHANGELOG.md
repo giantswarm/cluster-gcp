@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Set certificates directory to `/etc/kubernetes/ssl` in KubeadmControlPanel and KubeadmConfigTemplate `clusterConfiguration`.
 - Set CA certificate path to `/etc/kubernetes/ssl/ca.crt` in KubeadmControlPanel and KubeadmConfigTemplate `joinConfiguration`.
+- Always create a single subnet on the VPC, where only the subnet CIDR is configurable.
 
 ## [0.20.0] - 2022-07-28
 

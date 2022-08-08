@@ -11,15 +11,11 @@ metadata:
 spec:
   network:
     name: {{ include "resource.default.name" $ }}-network
-    autoCreateSubnetworks: {{ .Values.network.autoCreateSubnetworks }}
-    {{- if eq .Values.network.autoCreateSubnetworks false }}
+    autoCreateSubnetworks: false
     subnets:
-    {{- range .Values.network.nodeSubnetCidrs }}
-    - cidrBlock: {{ . }}
+    - cidrBlock: {{ .Values.network.nodeSubnetCidr }}
       region: {{ $.Values.gcp.region }}
       routeTableId: false
-    {{- end }}
-    {{- end }}
   region: {{ .Values.gcp.region }}
   project: {{ required "You must provide the GCP Project ID" .Values.gcp.project }}
   failureDomains:

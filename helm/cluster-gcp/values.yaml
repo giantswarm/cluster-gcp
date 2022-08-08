@@ -16,8 +16,7 @@ gcp:
     - europe-west3-c
 
 network:
-  autoCreateSubnetworks: true
-  nodeSubnetCidrs: []  # Array of CIDRs to be used if `autoCreateSubnetworks` is set to `false`
+  nodeSubnetCidr: "192.168.0.0/24"  # CIDR to be used for the subnet
   podCidr:
     - "192.168.0.0/16"
   serviceCIDR: 172.31.0.0/16
