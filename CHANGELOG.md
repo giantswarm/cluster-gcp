@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Ensure default values are used for `GCPMachineTemplate` if incomplete `machineDeployments` are provided
+
 ### Changed
 
 - Set certificates directory to `/etc/kubernetes/ssl` in KubeadmControlPanel and KubeadmConfigTemplate `clusterConfiguration`.
