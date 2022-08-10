@@ -51,13 +51,13 @@ spec:
   template:
     spec:
       image: {{ include "vmImage" $global }}
-      instanceType: {{ .instanceType }}
-      rootDeviceSize: {{ .rootVolumeSizeGB }}
+      instanceType: {{ .instanceType | default "n2-standard-4" }}
+      rootDeviceSize: {{ .rootVolumeSizeGB | default 100 }}
       additionalDisks:
       - deviceType: pd-ssd
-        size: {{ .containerdVolumeSizeGB }}
+        size: {{ .containerdVolumeSizeGB | default 100 }}
       - deviceType: pd-ssd
-        size: {{ .kubeletVolumeSizeGB }}
+        size: {{ .kubeletVolumeSizeGB | default 100 }}
       {{- if .subnet }}
       subnet: {{ .subnet }}
       {{- end }}
