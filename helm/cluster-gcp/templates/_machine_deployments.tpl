@@ -49,6 +49,10 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
+    metadata:
+      labels:
+        giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
+        {{- include "labels.common" $ | nindent 8 }}
     spec:
       image: {{ include "vmImage" $global }}
       instanceType: {{ .instanceType | default "n2-standard-4" }}
