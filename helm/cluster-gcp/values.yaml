@@ -57,6 +57,10 @@ machineDeployments:
   containerdVolumeSizeGB: 100
   kubeletVolumeSizeGB: 100
   customNodeLabels: []
+  serviceAccount:  # A service account used by workloads using google SDK on this nodepool.
+    email: "default"
+    scopes:
+      - "https://www.googleapis.com/auth/compute"
   # subnet:
 - name: def01
   # description:
@@ -67,6 +71,10 @@ machineDeployments:
   containerdVolumeSizeGB: 100
   kubeletVolumeSizeGB: 100
   customNodeLabels: []
+  serviceAccount:  # A service account used by workloads using google SDK on this nodepool.
+    email: "default"
+    scopes:
+      - "https://www.googleapis.com/auth/compute"
   # subnet:
 - name: def02
   # description:
@@ -77,6 +85,10 @@ machineDeployments:
   containerdVolumeSizeGB: 100
   kubeletVolumeSizeGB: 100
   customNodeLabels: []
+  serviceAccount:  # A service account used by workloads using google SDK on this nodepool.
+    email: "default"
+    scopes:
+      - "https://www.googleapis.com/auth/compute"
   # subnet:
 
 sshSSOPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"
