@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Revert #122 - do not set the certificates directory and CA certificates path in KubeadmControlPanel and KubeadmConfigTemplate
+
 ## [0.20.1] - 2022-08-10
 
 ### Fixed

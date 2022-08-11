@@ -92,7 +92,6 @@ spec:
             quota-backend-bytes: "8589934592"
       networking:
         serviceSubnet: {{ .Values.network.serviceCIDR }}
-      certificatesDir: /etc/kubernetes/ssl
     files:
     {{- include "sshFiles" . | nindent 4 }}
     {{- include "diskFiles" . | nindent 4 }}
@@ -112,7 +111,6 @@ spec:
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
     joinConfiguration:
       discovery: {}
-      caCertPath: /etc/kubernetes/ssl/ca.crt
       nodeRegistration:
         kubeletExtraArgs:
           cloud-provider: gce
