@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.24.0] - 2022-08-11
+
 ### Fixed
 
 - Corectly render several scopes for the service accounts.
@@ -355,7 +357,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.23.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.24.0...HEAD
+[0.24.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.23.0...v0.24.0
 [0.23.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.22.0...v0.23.0
 [0.22.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.21.0...v0.22.0
 [0.21.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.20.1...v0.21.0
