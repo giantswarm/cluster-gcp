@@ -113,7 +113,7 @@ room for such suffix.
 Hash function based on data provided
 Expects two arguments (as a `dict`) E.g.
   {{ include "hash" (dict "data" . "global" $global) }}
-Where `data` is the data to has on and `global` is the top level scope.
+Where `data` is the data to hash on and `global` is the top level scope.
 */}}
 {{- define "hash" -}}
 {{- $data := mustToJson .data | toString  }}
