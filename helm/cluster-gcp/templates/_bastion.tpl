@@ -28,13 +28,13 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
           kind: KubeadmConfigTemplate
-          name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" .Values.bastion }}
+          name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" (dict "data" .Values.bastion "global" .) }}
       clusterName: {{ include "resource.default.name" $ }}
       failureDomain: {{ index .Values.gcp.failureDomains 0 }}
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
-        name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" .Values.bastion }}
+        name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" (dict "data" .Values.bastion "global" .) }}
       version: {{ .Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
@@ -43,7 +43,7 @@ metadata:
   labels:
     cluster.x-k8s.io/role: bastion
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" .Values.bastion }}
+  name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" (dict "data" .Values.bastion "global" .) }}
   namespace: {{ .Release.Namespace }}
 spec:
   template:
@@ -63,7 +63,7 @@ metadata:
   labels:
     cluster.x-k8s.io/role: bastion
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" .Values.bastion }}
+  name: {{ include "resource.default.name" $ }}-bastion-{{ include "hash" (dict "data" .Values.bastion "global" .) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:

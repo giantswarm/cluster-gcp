@@ -90,6 +90,9 @@
                 }
             }
         },
+        "hashSalt": {
+            "type": "string"
+        },
         "includeClusterResourceSet": {
             "type": "boolean"
         },
