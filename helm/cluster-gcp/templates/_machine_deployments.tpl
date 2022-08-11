@@ -53,6 +53,16 @@ spec:
       image: {{ include "vmImage" $global }}
       instanceType: {{ .instanceType | default "n2-standard-4" }}
       rootDeviceSize: {{ .rootVolumeSizeGB | default 100 }}
+      {{- if .serviceAccount }}
+      serviceAccounts:
+        email: {{ .serviceAccount.email }}
+        scopes: {{ .serviceAccount.scopes }}
+      {{- else }}
+      serviceAccounts:
+        email: "default"
+        scopes:
+        - "https://www.googleapis.com/auth/compute"
+      {{- end }}
       additionalDisks:
       - deviceType: pd-ssd
         size: {{ .containerdVolumeSizeGB | default 100 }}
