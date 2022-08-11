@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `localhost` and `127.0.0.1` to the certSANs of apiserver certificates.
+
 ## [0.20.1] - 2022-08-10
 
 ### Fixed
