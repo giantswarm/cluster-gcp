@@ -54,6 +54,8 @@ spec:
       instanceType: {{ .instanceType | default "n2-standard-4" }}
       rootDeviceSize: {{ .rootVolumeSizeGB | default 100 }}
       serviceAccounts:
+        email: {{ .serviceAccount.email }}
+        scopes: {{ .serviceAccount.scopes }}
       additionalDisks:
       - deviceType: pd-ssd
         size: {{ .containerdVolumeSizeGB | default 100 }}
