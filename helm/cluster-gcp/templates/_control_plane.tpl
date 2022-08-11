@@ -153,5 +153,5 @@ spec:
       {{- end}}
       serviceAccounts:
         email: {{ .Values.controlPlane.serviceAccount.email }}
-        scopes: {{ .Values.controlPlane.serviceAccount.scopes }}
+        scopes: {{ .Values.controlPlane.serviceAccount.scopes | toYaml | nindent 8 }}
 {{- end -}}

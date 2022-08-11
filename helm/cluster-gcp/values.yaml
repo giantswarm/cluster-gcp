@@ -61,6 +61,7 @@ machineDeployments:
     email: "default"
     scopes:
       - "https://www.googleapis.com/auth/compute"
+      - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
   # subnet:
 - name: def01
   # description:
@@ -75,6 +76,7 @@ machineDeployments:
     email: "default"
     scopes:
       - "https://www.googleapis.com/auth/compute"
+      - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
   # subnet:
 - name: def02
   # description:
@@ -89,6 +91,7 @@ machineDeployments:
     email: "default"
     scopes:
       - "https://www.googleapis.com/auth/compute"
+      - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
   # subnet:
 
 sshSSOPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"

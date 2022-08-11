@@ -56,7 +56,7 @@ spec:
       {{- if .serviceAccount }}
       serviceAccounts:
         email: {{ .serviceAccount.email }}
-        scopes: {{ .serviceAccount.scopes }}
+        scopes: {{ .serviceAccount.scopes | toYaml | nindent 8 }}
       {{- else }}
       serviceAccounts:
         email: "default"
