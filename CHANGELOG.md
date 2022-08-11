@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Make `organization` a mandatory value to pass when installing the chart.
+- The `description` value is empty by default now.
 
 ## [0.21.0] - 2022-08-11
 
