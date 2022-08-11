@@ -21,6 +21,8 @@ spec:
         timeoutForControlPlane: 20m
         certSANs:
           - "api.{{ include "resource.default.name" $ }}.{{ .Values.baseDomain }}"
+          - 127.0.0.1
+          - localhost
         extraArgs:
           audit-log-maxage: "30"
           audit-log-maxbackup: "30"
