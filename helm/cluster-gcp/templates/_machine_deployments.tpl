@@ -26,7 +26,7 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
           kind: KubeadmConfigTemplate
-          name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
+          name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
       clusterName: {{ include "resource.default.name" $ }}
       {{- if (hasPrefix $.Values.gcp.region .failureDomain) }}
       failureDomain: {{ .failureDomain }}
@@ -36,7 +36,7 @@ spec:
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
-        name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
+        name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
       version: {{ $.Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
@@ -45,7 +45,7 @@ metadata:
   labels:
     giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
+  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
@@ -76,9 +76,9 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate
 metadata:
   labels:
-    giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
+    giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" . }}
+  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:

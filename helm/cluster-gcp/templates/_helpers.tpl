@@ -109,8 +109,17 @@ room for such suffix.
 {{ .Values.vmImageBase }}cluster-api-ubuntu-{{ .Values.ubuntuImageVersion }}-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
 {{- end -}}
 
+{{/*
+Hash function based on data provided
+Expects two arguments (as a `dict`) E.g.
+  {{ include "hash" (dict "data" . "global" $global) }}
+Where `data` is the data to has on and `global` is the top level scope.
+*/}}
 {{- define "hash" -}}
-{{- mustToJson . | toString | quote | sha1sum | trunc 8 }}
+{{- $data := mustToJson .data | toString  }}
+{{- $salt := "" }}
+{{- if .global.Values.hashSalt }}{{ $salt = .global.Values.hashSalt}}{{end}}
+{{- (printf "%s%s" $data $salt) | quote | sha1sum | trunc 8 }}
 {{- end -}}
 
 {{- define "kubeProxyFiles" }}

@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make `organization` a mandatory value to pass when installing the chart.
 - The `description` value is empty by default now.
 
+### Added
+
+- Optional `hashSalt` value to force recreation of immutable resources
+
 ## [0.22.0] - 2022-08-11
 
 ### Added
