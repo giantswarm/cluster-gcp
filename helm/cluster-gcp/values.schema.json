@@ -31,13 +31,8 @@
         "controlPlane": {
             "type": "object",
             "properties": {
-                "api": {
-                    "type": "object",
-                    "properties": {
-                        "allowlistSubnets": {
-                            "type": "string"
-                        }
-                    }
+                "apiAllowlistSubnets": {
+                    "type": "string"
                 },
                 "containerdVolumeSizeGB": {
                     "type": "integer"
