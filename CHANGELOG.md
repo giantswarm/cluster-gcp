@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.24.0] - 2022-08-11
+
+### Fixed
+
+- Corectly render several scopes for the service accounts.
+
+## [0.23.0] - 2022-08-11
+
+### Changed
+
+- Make `organization` a mandatory value to pass when installing the chart.
+- The `description` value is empty by default now.
+
+### Added
+
+- Optional `hashSalt` value to force recreation of immutable resources
+
+## [0.22.0] - 2022-08-11
+
+### Added
+
+- Allow to choose the Google Service Account to set for worker nodes.
+
+## [0.21.0] - 2022-08-11
+
+### Fixed
+
+- Revert #122 - do not set the certificates directory and CA certificates path in KubeadmControlPanel and KubeadmConfigTemplate
+
+### Added
+
+- Add `localhost` and `127.0.0.1` to the certSANs of apiserver certificates.
+
+## [0.20.1] - 2022-08-10
+
+### Fixed
+
+- Ensure default values are used for `GCPMachineTemplate` if incomplete `machineDeployments` are provided
+
 ### Changed
 
 - Set certificates directory to `/etc/kubernetes/ssl` in KubeadmControlPanel and KubeadmConfigTemplate `clusterConfiguration`.
@@ -319,7 +358,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.20.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.24.0...HEAD
+[0.24.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.23.0...v0.24.0
+[0.23.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.22.0...v0.23.0
+[0.22.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.21.0...v0.22.0
+[0.21.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.20.1...v0.21.0
+[0.20.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.19.1...v0.20.0
 [0.19.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.19.0...v0.19.1
 [0.19.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.18.0...v0.19.0

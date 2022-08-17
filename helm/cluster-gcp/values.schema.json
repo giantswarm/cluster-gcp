@@ -31,6 +31,9 @@
         "controlPlane": {
             "type": "object",
             "properties": {
+                "apiAllowlistSubnets": {
+                    "type": "string"
+                },
                 "containerdVolumeSizeGB": {
                     "type": "integer"
                 },
@@ -90,6 +93,9 @@
                 }
             }
         },
+        "hashSalt": {
+            "type": "string"
+        },
         "includeClusterResourceSet": {
             "type": "boolean"
         },
@@ -138,6 +144,20 @@
                     },
                     "rootVolumeSizeGB": {
                         "type": "integer"
+                    },
+                    "serviceAccount": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "scopes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 }
             }

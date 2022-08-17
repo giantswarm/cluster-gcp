@@ -14,13 +14,15 @@ spec:
     infrastructureRef:
       apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
       kind: GCPMachineTemplate
-      name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" .Values.controlPlane }}
+      name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" .Values.controlPlane "global" .) }}
   kubeadmConfigSpec:
     clusterConfiguration:
       apiServer:
         timeoutForControlPlane: 20m
         certSANs:
           - "api.{{ include "resource.default.name" $ }}.{{ .Values.baseDomain }}"
+          - 127.0.0.1
+          - localhost
         extraArgs:
           audit-log-maxage: "30"
           audit-log-maxbackup: "30"
@@ -92,7 +94,6 @@ spec:
             quota-backend-bytes: "8589934592"
       networking:
         serviceSubnet: {{ .Values.network.serviceCIDR }}
-      certificatesDir: /etc/kubernetes/ssl
     files:
     {{- include "sshFiles" . | nindent 4 }}
     {{- include "diskFiles" . | nindent 4 }}
@@ -112,7 +113,6 @@ spec:
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
     joinConfiguration:
       discovery: {}
-      caCertPath: /etc/kubernetes/ssl/ca.crt
       nodeRegistration:
         kubeletExtraArgs:
           cloud-provider: gce
@@ -133,7 +133,7 @@ metadata:
   labels:
     cluster.x-k8s.io/role: control-plane
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" .Values.controlPlane }}
+  name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" .Values.controlPlane "global" .) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
@@ -153,5 +153,5 @@ spec:
       {{- end}}
       serviceAccounts:
         email: {{ .Values.controlPlane.serviceAccount.email }}
-        scopes: {{ .Values.controlPlane.serviceAccount.scopes }}
+        scopes: {{ .Values.controlPlane.serviceAccount.scopes | toYaml | nindent 8 }}
 {{- end -}}

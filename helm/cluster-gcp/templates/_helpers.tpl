@@ -32,7 +32,7 @@ app: {{ include "name" . | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 cluster.x-k8s.io/cluster-name: {{ include "resource.default.name" . | quote }}
 giantswarm.io/cluster: {{ include "resource.default.name" . | quote }}
-giantswarm.io/organization: {{ .Values.organization | quote }}
+giantswarm.io/organization: {{ required "You must provide an existing organization" .Values.organization | quote }}
 {{- end -}}
 
 {{/*
@@ -109,8 +109,17 @@ room for such suffix.
 {{ .Values.vmImageBase }}cluster-api-ubuntu-{{ .Values.ubuntuImageVersion }}-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
 {{- end -}}
 
+{{/*
+Hash function based on data provided
+Expects two arguments (as a `dict`) E.g.
+  {{ include "hash" (dict "data" . "global" $global) }}
+Where `data` is the data to hash on and `global` is the top level scope.
+*/}}
 {{- define "hash" -}}
-{{- mustToJson . | toString | quote | sha1sum | trunc 8 }}
+{{- $data := mustToJson .data | toString  }}
+{{- $salt := "" }}
+{{- if .global.Values.hashSalt }}{{ $salt = .global.Values.hashSalt}}{{end}}
+{{- (printf "%s%s" $data $salt) | quote | sha1sum | trunc 8 }}
 {{- end -}}
 
 {{- define "kubeProxyFiles" }}
