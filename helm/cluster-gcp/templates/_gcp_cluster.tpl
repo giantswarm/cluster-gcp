@@ -16,6 +16,7 @@ spec:
     - cidrBlock: {{ .Values.network.nodeSubnetCidr }}
       region: {{ $.Values.gcp.region }}
       routeTableId: false
+      enableFlowLogs: false
   region: {{ .Values.gcp.region }}
   project: {{ required "You must provide the GCP Project ID" .Values.gcp.project }}
   failureDomains:
