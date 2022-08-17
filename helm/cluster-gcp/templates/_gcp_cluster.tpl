@@ -14,7 +14,8 @@ spec:
     name: {{ include "resource.default.name" $ }}-network
     autoCreateSubnetworks: false
     subnets:
-    - cidrBlock: {{ .Values.network.nodeSubnetCidr }}
+    - name: {{ include "resource.default.name" $ }}-subnetwork
+      cidrBlock: {{ .Values.network.nodeSubnetCidr }}
       region: {{ $.Values.gcp.region }}
       routeTableId: false
       enableFlowLogs: false

@@ -68,9 +68,7 @@ spec:
         size: {{ .containerdVolumeSizeGB | default 100 }}
       - deviceType: pd-ssd
         size: {{ .kubeletVolumeSizeGB | default 100 }}
-      {{- if .subnet }}
-      subnet: {{ .subnet }}
-      {{- end }}
+      subnet: {{ include "resource.default.name" $ }}-subnetwork
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate

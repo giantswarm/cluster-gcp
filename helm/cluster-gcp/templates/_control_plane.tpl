@@ -148,9 +148,7 @@ spec:
         size: {{ .Values.controlPlane.containerdVolumeSizeGB }}
       - deviceType: pd-ssd
         size: {{ .Values.controlPlane.kubeletVolumeSizeGB }}
-      {{- if .Values.controlPlane.subnet }}
-      subnet: {{ .Values.controlPlane.subnet }}
-      {{- end}}
+      subnet: {{ include "resource.default.name" $ }}-subnetwork
       serviceAccounts:
         email: {{ .Values.controlPlane.serviceAccount.email }}
         scopes: {{ .Values.controlPlane.serviceAccount.scopes | toYaml | nindent 8 }}
