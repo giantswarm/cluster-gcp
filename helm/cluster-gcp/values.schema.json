@@ -165,11 +165,8 @@
         "network": {
             "type": "object",
             "properties": {
-                "autoCreateSubnetworks": {
-                    "type": "boolean"
-                },
-                "nodeSubnetCidrs": {
-                    "type": "array"
+                "nodeSubnetCidr": {
+                    "type": "string"
                 },
                 "podCidr": {
                     "type": "array",
