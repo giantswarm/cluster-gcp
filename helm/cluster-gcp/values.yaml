@@ -16,8 +16,7 @@ gcp:
     - europe-west3-c
 
 network:
-  autoCreateSubnetworks: true
-  nodeSubnetCidrs: []  # Array of CIDRs to be used if `autoCreateSubnetworks` is set to `false`
+  nodeSubnetCidr: "192.168.0.0/16"  # CIDR to be used for the subnet
   podCidr:
     - "192.168.0.0/16"
   serviceCIDR: 172.31.0.0/16
@@ -28,7 +27,6 @@ bastion:
   instanceType: n1-standard-2
   replicas: 1
   allowlistSubnets: "185.102.95.187/32,95.179.153.65/32"
-  # subnet:
 
 controlPlane:
   apiAllowlistSubnets: "185.102.95.187/32,95.179.153.65/32"
@@ -37,7 +35,6 @@ controlPlane:
   etcdVolumeSizeGB: 100
   containerdVolumeSizeGB: 100
   kubeletVolumeSizeGB: 100
-  # subnet:
   serviceAccount:
     email: "default"  # A service account used by the control-plane to set up LoadBalancer Services
     scopes:
@@ -63,7 +60,6 @@ machineDeployments:
     scopes:
       - "https://www.googleapis.com/auth/compute"
       - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
-  # subnet:
 - name: def01
   # description:
   failureDomain: europe-west3-b
@@ -78,7 +74,6 @@ machineDeployments:
     scopes:
       - "https://www.googleapis.com/auth/compute"
       - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
-  # subnet:
 - name: def02
   # description:
   failureDomain: europe-west3-c
@@ -93,7 +88,6 @@ machineDeployments:
     scopes:
       - "https://www.googleapis.com/auth/compute"
       - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
-  # subnet:
 
 sshSSOPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"
 

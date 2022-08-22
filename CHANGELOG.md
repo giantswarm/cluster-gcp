@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Always create a single subnet on the VPC, where only the subnet CIDR is configurable.
+
 ## [0.24.0] - 2022-08-11
 
 ### Fixed
