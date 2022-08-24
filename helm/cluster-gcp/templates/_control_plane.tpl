@@ -69,11 +69,12 @@ spec:
           pathType: DirectoryOrCreate
       controllerManager:
         extraArgs:
-          allocate-node-cidrs: "false"
+          allocate-node-cidrs: "true"
           authorization-always-allow-paths: "/healthz,/readyz,/livez,/metrics"
           bind-address: 0.0.0.0
           cloud-provider: gce
           cloud-config: /etc/kubernetes/gcp.conf
+          cluster-cidr: {{ join "," .Values.network.podCidr }}
           logtostderr: "true"
           profiling: "false"
         extraVolumes:
