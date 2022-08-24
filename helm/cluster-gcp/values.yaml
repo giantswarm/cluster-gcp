@@ -17,7 +17,12 @@ gcp:
 
 network:
   nodeSubnetCidr: "192.168.0.0/16"  # CIDR to be used for the subnet.
-  proxySubnetCidr: ""  # CIDR to be used for the proxy subnet. If empty, the subnet won't be created.
+
+  # proxySubnetCidr
+  # CIDR to be used for the proxy subnet. If empty, the subnet won't be created.
+  # A proxy-only subnet must provide 64 or more IP addresses. This corresponds to a prefix length of /26 or shorter.
+  # The recommended subnet size is /23 (512 proxy-only addresses).
+  proxySubnetCidr: ""
   podCidr:
     - "192.168.0.0/16"
   serviceCIDR: 172.31.0.0/16
