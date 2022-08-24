@@ -74,7 +74,7 @@ spec:
           bind-address: 0.0.0.0
           cloud-provider: gce
           cloud-config: /etc/kubernetes/gcp.conf
-          cluster-cidr: {{ .Values.network.podCidr | first }}
+          cluster-cidr: {{ join "," .Values.network.podCidr }}
           logtostderr: "true"
           profiling: "false"
         extraVolumes:
