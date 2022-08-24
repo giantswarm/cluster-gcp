@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Pass required flags to controller manager so that pods CIDR can be customized.
+
 ## [0.25.0] - 2022-08-22
 
 ### Changed
