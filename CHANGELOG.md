@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Set default value for allow lists to empty string
+
 ## [0.26.0] - 2022-08-24
 
 ### Fixed
