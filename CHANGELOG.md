@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.26.2] - 2022-08-26
+
 ### Fixed
 
 - Improved hash function to hash based on whole `.Spec` rather than just provided values
@@ -379,7 +381,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.2...HEAD
+[0.26.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.1...v0.26.2
 [0.26.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.0...v0.26.1
 [0.26.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.25.0...v0.26.0
 [0.25.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.24.0...v0.25.0
