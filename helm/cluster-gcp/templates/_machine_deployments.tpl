@@ -122,7 +122,7 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
-    spec:{{ include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal | nindent 6 }}
+    spec: {{ include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal | nindent 6 }}
 ---
 {{ end }}
 {{- end -}}
