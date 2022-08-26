@@ -1,6 +1,67 @@
+{{/*
+GCPMachineTemplates .Spec are immutable and cannot change.
+This function is used for both the `.Spec` value and as the data for the hash function.
+Any changes to this will trigger the resource to be recreated rather than attempting to update in-place.
+*/}}
+{{- define "machinedeployment-gcpmachinetemplate-spec" -}}
+image: {{ include "vmImage" .global }}
+instanceType: {{ .instanceType | default "n2-standard-4" }}
+rootDeviceSize: {{ .rootVolumeSizeGB | default 100 }}
+{{- if .serviceAccount }}
+serviceAccounts:
+  email: {{ .serviceAccount.email }}
+  scopes: {{ .serviceAccount.scopes | toYaml | nindent 4 }}
+{{- else }}
+serviceAccounts:
+  email: "default"
+  scopes:
+  - "https://www.googleapis.com/auth/compute"
+{{- end }}
+additionalDisks:
+- deviceType: pd-ssd
+  size: {{ .containerdVolumeSizeGB | default 100 }}
+- deviceType: pd-ssd
+  size: {{ .kubeletVolumeSizeGB | default 100 }}
+subnet: {{ include "resource.default.name" .global }}-subnetwork
+{{- end }}
+
+
+{{/*
+KubeadmConfigTemplate .Spec are immutable and cannot change.
+This function is used for both the `.Spec` value and as the data for the hash function.
+Any changes to this will trigger the resource to be recreated rather than attempting to update in-place.
+*/}}
+{{- define "machinedeployment-kubeadmconfigtemplate-spec" -}}
+joinConfiguration:
+  discovery: {}
+  nodeRegistration:
+    kubeletExtraArgs:
+      cloud-provider: gce
+      healthz-bind-address: 0.0.0.0
+      image-pull-progress-deadline: 1m
+      node-ip: '{{ `{{ ds.meta_data.local_ipv4 }}` }}'
+      node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }}{{ if .customNodeLabels }},{{- join "," .customNodeLabels }}{{ end }}
+      v: "2"
+    name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+files:
+{{- include "sshFiles" .global | nindent 2 }}
+{{- include "diskFiles" .global | nindent 2 }}
+preKubeadmCommands:
+- /bin/bash /opt/init-disks.sh
+postKubeadmCommands:
+{{- include "sshPostKubeadmCommands" . | nindent 2 }}
+users:
+{{- include "sshUsers" . | nindent 2 }}
+{{- end }}
+
+
 {{- define "machine-deployments" }}
 {{ $global := . }}
 {{ range .Values.machineDeployments }}
+
+{{- $thisVal := . }}
+{{- $_ := set $thisVal "global" $global -}}
+
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
@@ -26,7 +87,7 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
           kind: KubeadmConfigTemplate
-          name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
+          name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal) "global" $global) }}
       clusterName: {{ include "resource.default.name" $ }}
       {{- if (hasPrefix $.Values.gcp.region .failureDomain) }}
       failureDomain: {{ .failureDomain }}
@@ -36,7 +97,7 @@ spec:
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
-        name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
+        name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-gcpmachinetemplate-spec" $thisVal) "global" $global) }}
       version: {{ $.Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
@@ -45,62 +106,23 @@ metadata:
   labels:
     giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
+  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-gcpmachinetemplate-spec" $thisVal) "global" $global) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
-    spec:
-      image: {{ include "vmImage" $global }}
-      instanceType: {{ .instanceType | default "n2-standard-4" }}
-      rootDeviceSize: {{ .rootVolumeSizeGB | default 100 }}
-      {{- if .serviceAccount }}
-      serviceAccounts:
-        email: {{ .serviceAccount.email }}
-        scopes: {{ .serviceAccount.scopes | toYaml | nindent 8 }}
-      {{- else }}
-      serviceAccounts:
-        email: "default"
-        scopes:
-        - "https://www.googleapis.com/auth/compute"
-      {{- end }}
-      additionalDisks:
-      - deviceType: pd-ssd
-        size: {{ .containerdVolumeSizeGB | default 100 }}
-      - deviceType: pd-ssd
-        size: {{ .kubeletVolumeSizeGB | default 100 }}
-      subnet: {{ include "resource.default.name" $ }}-subnetwork
+    spec: {{ include "machinedeployment-gcpmachinetemplate-spec" $thisVal | nindent 6 }}
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate
 metadata:
   labels:
-    giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
+    giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" . "global" $global) }}
+  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal) "global" $global) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
-    spec:
-      joinConfiguration:
-        discovery: {}
-        nodeRegistration:
-          kubeletExtraArgs:
-            cloud-provider: gce
-            healthz-bind-address: 0.0.0.0
-            image-pull-progress-deadline: 1m
-            node-ip: '{{ `{{ ds.meta_data.local_ipv4 }}` }}'
-            node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }}{{ if .customNodeLabels }},{{- join "," .customNodeLabels }}{{ end }}
-            v: "2"
-          name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
-      files:
-      {{- include "sshFiles" $ | nindent 6 }}
-      {{- include "diskFiles" $ | nindent 6 }}
-      preKubeadmCommands:
-      - /bin/bash /opt/init-disks.sh
-      postKubeadmCommands:
-      {{- include "sshPostKubeadmCommands" . | nindent 6 }}
-      users:
-      {{- include "sshUsers" . | nindent 6 }}
+    spec:{{ include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal | nindent 6 }}
 ---
 {{ end }}
 {{- end -}}
