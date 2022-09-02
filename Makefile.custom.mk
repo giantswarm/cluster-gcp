@@ -4,7 +4,7 @@ CLUSTER ?= cluster-gcp-acceptance
 render: architect
 	mkdir -p $(shell pwd)/helm/rendered
 	cp -r $(shell pwd)/helm/cluster-gcp $(shell pwd)/helm/rendered/
-	helm repo add cluster-catalog https://giantswarm.github.io/cluster-catalog
+	helm repo add cluster-catalog https://giantswarm.github.io/cluster-catalog || echo
 	$(ARCHITECT) helm template --dir $(shell pwd)/helm/rendered/cluster-gcp
 	helm dependency build $(shell pwd)/helm/rendered/cluster-gcp
 
