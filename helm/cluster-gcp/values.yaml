@@ -34,10 +34,10 @@ bastion:
   enabled: true
   instanceType: n1-standard-2
   replicas: 1
-  allowlistSubnets: "185.102.95.187/32,95.179.153.65/32"
+  allowlistSubnets: ""  # A comma separated list of cidrs that will have ssh access to the bastion hosts.
 
 controlPlane:
-  apiAllowlistSubnets: "185.102.95.187/32,95.179.153.65/32"
+  apiAllowlistSubnets: ""  # A comma separated list of cidrs that will have access to the kubernetes API.
   instanceType: n2-standard-4
   rootVolumeSizeGB: 100
   etcdVolumeSizeGB: 100
