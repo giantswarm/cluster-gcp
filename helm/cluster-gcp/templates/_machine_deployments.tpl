@@ -4,7 +4,7 @@ This function is used for both the `.Spec` value and as the data for the hash fu
 Any changes to this will trigger the resource to be recreated rather than attempting to update in-place.
 */}}
 {{- define "machinedeployment-gcpmachinetemplate-spec" -}}
-image: {{ include "vmImage" .global }}
+image: {{ .vmImage }}
 instanceType: {{ .instanceType | default "n2-standard-4" }}
 rootDeviceSize: {{ .rootVolumeSizeGB | default 100 }}
 {{- if .serviceAccount }}
@@ -22,7 +22,7 @@ additionalDisks:
   size: {{ .containerdVolumeSizeGB | default 100 }}
 - deviceType: pd-ssd
   size: {{ .kubeletVolumeSizeGB | default 100 }}
-subnet: {{ include "resource.default.name" .global }}-subnetwork
+subnet: {{ .resourceDefaultName }}-subnetwork
 {{- end }}
 
 
@@ -44,23 +44,27 @@ joinConfiguration:
       v: "2"
     name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
 files:
-{{- include "sshFiles" .global | nindent 2 }}
-{{- include "diskFiles" .global | nindent 2 }}
+{{ .sshFiles }}
+{{ .diskFiles }}
 preKubeadmCommands:
 - /bin/bash /opt/init-disks.sh
 postKubeadmCommands:
-{{- include "sshPostKubeadmCommands" . | nindent 2 }}
+{{ .sshPostKubeadmCommands }}
 users:
-{{- include "sshUsers" . | nindent 2 }}
+{{ .sshUsers }}
 {{- end }}
 
 
 {{- define "machine-deployments" }}
-{{ $global := . }}
 {{ range .Values.machineDeployments }}
 
-{{- $thisVal := . }}
-{{- $_ := set $thisVal "global" $global -}}
+{{- $machineDeployment := . }}
+{{- $_ := set $machineDeployment "vmImage" (include "vmImage" $) -}}
+{{- $_ := set $machineDeployment "resourceDefaultName" (include "resource.default.name" $ | nindent 2) -}}
+{{- $_ := set $machineDeployment "sshFiles" (include "sshFiles" $ | nindent 2) -}}
+{{- $_ := set $machineDeployment "diskFiles" (include "diskFiles" $ | nindent 2) -}}
+{{- $_ := set $machineDeployment "sshPostKubeadmCommands" (include "sshPostKubeadmCommands" $ | nindent 2) -}}
+{{- $_ := set $machineDeployment "sshUsers" (include "sshUsers" $ | nindent 2) -}}
 
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
@@ -87,7 +91,7 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
           kind: KubeadmConfigTemplate
-          name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal) "global" $global) }}
+          name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-kubeadmconfigtemplate-spec" $machineDeployment) "global" $) }}
       clusterName: {{ include "resource.default.name" $ }}
       {{- if (hasPrefix $.Values.gcp.region .failureDomain) }}
       failureDomain: {{ .failureDomain }}
@@ -97,7 +101,7 @@ spec:
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: GCPMachineTemplate
-        name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-gcpmachinetemplate-spec" $thisVal) "global" $global) }}
+        name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-gcpmachinetemplate-spec" $machineDeployment) "global" $) }}
       version: {{ $.Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
@@ -106,11 +110,11 @@ metadata:
   labels:
     giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-gcpmachinetemplate-spec" $thisVal) "global" $global) }}
+  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-gcpmachinetemplate-spec" $machineDeployment) "global" $) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
-    spec: {{ include "machinedeployment-gcpmachinetemplate-spec" $thisVal | nindent 6 }}
+    spec: {{ include "machinedeployment-gcpmachinetemplate-spec" $machineDeployment | nindent 6 }}
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: KubeadmConfigTemplate
@@ -118,11 +122,11 @@ metadata:
   labels:
     giantswarm.io/machine-deployment: {{ include "resource.default.name" $ }}-{{ .name }}
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal) "global" $global) }}
+  name: {{ include "resource.default.name" $ }}-{{ .name }}-{{ include "hash" (dict "data" (include "machinedeployment-kubeadmconfigtemplate-spec" $machineDeployment) "global" $) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
-    spec: {{ include "machinedeployment-kubeadmconfigtemplate-spec" $thisVal | nindent 6 }}
+    spec: {{ include "machinedeployment-kubeadmconfigtemplate-spec" $machineDeployment | nindent 6 }}
 ---
 {{ end }}
 {{- end -}}
