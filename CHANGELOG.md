@@ -11,6 +11,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add support for creating a proxy subnet for load balancing.
 
+## [0.26.3] - 2022-09-02
+
+### Changed
+
+- Set default value for allow lists to empty string
+
+## [0.26.2] - 2022-08-26
+
+### Fixed
+
+- Improved hash function to hash based on whole `.Spec` rather than just provided values
+
+## [0.26.1] - 2022-08-25
+
+### Fixed
+
+- Use different CIDRs for pods ande nodes.
+
+
+## [0.26.0] - 2022-08-24
+
+### Fixed
+
+- Pass required flags to controller manager so that pods CIDR can be customized.
+
 ## [0.25.0] - 2022-08-22
 
 ### Changed
@@ -367,7 +392,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.25.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.3...HEAD
+[0.26.3]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.2...v0.26.3
+[0.26.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.1...v0.26.2
+[0.26.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.0...v0.26.1
+[0.26.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.25.0...v0.26.0
 [0.25.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.24.0...v0.25.0
 [0.24.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.23.0...v0.24.0
 [0.23.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.22.0...v0.23.0

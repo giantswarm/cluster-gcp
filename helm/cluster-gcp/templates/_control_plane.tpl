@@ -1,3 +1,26 @@
+{{/*
+GCPMachineTemplates .Spec are immutable and cannot change.
+This function is used for both the `.Spec` value and as the data for the hash function.
+Any changes to this will trigger the resource to be recreated rather than attempting to update in-place.
+*/}}
+{{- define "controlplane-gcpmachinetemplate-spec" -}}
+image: {{ include "vmImage" $ }}
+instanceType: {{ .Values.controlPlane.instanceType }}
+rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+additionalDisks:
+- deviceType: pd-ssd
+  size: {{ .Values.controlPlane.etcdVolumeSizeGB }}
+- deviceType: pd-ssd
+  size: {{ .Values.controlPlane.containerdVolumeSizeGB }}
+- deviceType: pd-ssd
+  size: {{ .Values.controlPlane.kubeletVolumeSizeGB }}
+subnet: {{ include "resource.default.name" $ }}-subnetwork
+serviceAccounts:
+  email: {{ .Values.controlPlane.serviceAccount.email }}
+  scopes: {{ .Values.controlPlane.serviceAccount.scopes | toYaml | nindent 4 }}
+{{- end }}
+
+
 {{- define "control-plane" }}
 apiVersion: controlplane.cluster.x-k8s.io/v1beta1
 kind: KubeadmControlPlane
@@ -14,7 +37,7 @@ spec:
     infrastructureRef:
       apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
       kind: GCPMachineTemplate
-      name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" .Values.controlPlane "global" .) }}
+      name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "global" .) }}
   kubeadmConfigSpec:
     clusterConfiguration:
       apiServer:
@@ -69,11 +92,12 @@ spec:
           pathType: DirectoryOrCreate
       controllerManager:
         extraArgs:
-          allocate-node-cidrs: "false"
+          allocate-node-cidrs: "true"
           authorization-always-allow-paths: "/healthz,/readyz,/livez,/metrics"
           bind-address: 0.0.0.0
           cloud-provider: gce
           cloud-config: /etc/kubernetes/gcp.conf
+          cluster-cidr: {{ join "," .Values.network.podCidr }}
           logtostderr: "true"
           profiling: "false"
         extraVolumes:
@@ -133,23 +157,9 @@ metadata:
   labels:
     cluster.x-k8s.io/role: control-plane
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" .Values.controlPlane "global" .) }}
+  name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "global" .) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
-    spec:
-      image: {{ include "vmImage" $ }}
-      instanceType: {{ .Values.controlPlane.instanceType }}
-      rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
-      additionalDisks:
-      - deviceType: pd-ssd
-        size: {{ .Values.controlPlane.etcdVolumeSizeGB }}
-      - deviceType: pd-ssd
-        size: {{ .Values.controlPlane.containerdVolumeSizeGB }}
-      - deviceType: pd-ssd
-        size: {{ .Values.controlPlane.kubeletVolumeSizeGB }}
-      subnet: {{ include "resource.default.name" $ }}-subnetwork
-      serviceAccounts:
-        email: {{ .Values.controlPlane.serviceAccount.email }}
-        scopes: {{ .Values.controlPlane.serviceAccount.scopes | toYaml | nindent 8 }}
+    spec: {{ include "controlplane-gcpmachinetemplate-spec" $ | nindent 6 }}
 {{- end -}}

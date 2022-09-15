@@ -16,15 +16,23 @@ gcp:
     - europe-west3-c
 
 network:
-  nodeSubnetCidr: "192.168.0.0/16"  # CIDR to be used for the subnet.
-
   # proxySubnetCidr
   # CIDR to be used for the proxy subnet. If empty, the subnet won't be created.
   # A proxy-only subnet must provide 64 or more IP addresses. This corresponds to a prefix length of /26 or shorter.
   # The recommended subnet size is /23 (512 proxy-only addresses).
   proxySubnetCidr: ""
+
+  # nodeSubnetCidr
+  # CIDR to be used for the subnet where VMs will be created.
+  nodeSubnetCidr: "192.168.0.0/16"
+
+  # podCidr
+  # CIDRs for the pods. They need to be different than `nodeSubnetCidr`.
   podCidr:
-    - "192.168.0.0/16"
+    - "10.0.0.0/16"
+
+  # serviceCIDR
+  # CIDR for the kubernetes Services.
   serviceCIDR: 172.31.0.0/16
 
 # A bastion host that will be used for SSH.
@@ -32,10 +40,10 @@ bastion:
   enabled: true
   instanceType: n1-standard-2
   replicas: 1
-  allowlistSubnets: "185.102.95.187/32,95.179.153.65/32"
+  allowlistSubnets: ""  # A comma separated list of cidrs that will have ssh access to the bastion hosts.
 
 controlPlane:
-  apiAllowlistSubnets: "185.102.95.187/32,95.179.153.65/32"
+  apiAllowlistSubnets: ""  # A comma separated list of cidrs that will have access to the kubernetes API.
   instanceType: n2-standard-4
   rootVolumeSizeGB: 100
   etcdVolumeSizeGB: 100
