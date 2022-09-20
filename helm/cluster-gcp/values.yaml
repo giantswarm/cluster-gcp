@@ -16,6 +16,12 @@ gcp:
     - europe-west3-c
 
 network:
+  # proxySubnetCidr
+  # CIDR to be used for the proxy subnet. If empty, the subnet won't be created.
+  # A proxy-only subnet must provide 64 or more IP addresses. This corresponds to a prefix length of /26 or shorter.
+  # The recommended subnet size is /23 (512 proxy-only addresses).
+  proxySubnetCidr: ""
+
   # nodeSubnetCidr
   # CIDR to be used for the subnet where VMs will be created.
   nodeSubnetCidr: "192.168.0.0/16"
