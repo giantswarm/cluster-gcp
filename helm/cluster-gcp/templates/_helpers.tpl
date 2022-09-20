@@ -82,13 +82,20 @@ room for such suffix.
 - path: /etc/kubernetes/gcp.conf
   permissions: "0600"
   encoding: base64
-  content: {{ $.Files.Get "files/etc/kubernetes/gcp.conf" | b64enc }}
+  content: {{ include "kubernetesCloudConfigurationFile" $ | b64enc }}
 - path: /etc/kubernetes/encryption/config.yaml
   permissions: "0600"
   contentFrom:
     secret:
       name: {{ include "resource.default.name" $ }}-encryption-provider-config
       key: encryption
+{{- end -}}
+
+{{- define "kubernetesCloudConfigurationFile" -}}
+[global]
+multizone = true
+network-name={{ include "resource.default.name" $ }}-network
+subnetwork-name={{ include "resource.default.name" $ }}-subnetwork
 {{- end -}}
 
 {{- define "sshPostKubeadmCommands" -}}
