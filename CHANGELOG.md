@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Add networking information to kubernetes cloud config file.
+
 ## [0.26.3] - 2022-09-02
 
 ### Fixed
