@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add support for creating a proxy subnet for load balancing.
 
+### Fixed
+
+- Add networking information to kubernetes cloud config file.
+
 ## [0.26.3] - 2022-09-02
 
 ### Fixed
