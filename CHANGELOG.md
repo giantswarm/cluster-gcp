@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.27.1] - 2022-09-28
+
 ### Fixed
 
 - Set only routeTableId for the GCPCluster subnetworks
@@ -406,7 +408,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.27.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.27.1...HEAD
+[0.27.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.27.0...v0.27.1
 [0.27.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.3...v0.27.0
 [0.26.3]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.2...v0.26.3
 [0.26.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.26.1...v0.26.2
