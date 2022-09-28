@@ -18,12 +18,11 @@ spec:
       cidrBlock: {{ .Values.network.nodeSubnetCidr }}
       region: {{ $.Values.gcp.region }}
       routeTableId: false
-      enableFlowLogs: false
     {{- if .Values.network.proxySubnetCidr }}
     - name: {{ include "resource.default.name" $ }}-subnetwork-proxy
       cidrBlock: {{ .Values.network.proxySubnetCidr }}
       region: {{ $.Values.gcp.region }}
-      enableFlowLogs: false
+      routeTableId: false
       purpose: REGIONAL_MANAGED_PROXY
     {{- end }}
   region: {{ .Values.gcp.region }}
