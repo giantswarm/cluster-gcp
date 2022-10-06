@@ -124,6 +124,8 @@ spec:
     {{- include "kubeProxyFiles" . | nindent 4 }}
     {{- include "kubernetesFiles" . | nindent 4 }}
     initConfiguration:
+      skipPhases:
+      - addon/kube-proxy
       localAPIEndpoint:
         advertiseAddress: ""
         bindPort: 0
