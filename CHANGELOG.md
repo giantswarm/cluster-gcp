@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Make `kubeadm` skip the phase where it installs `kube-proxy` as we will use `cilium` as a replacement.
+
 ## [0.28.0] - 2022-09-29
 
 ### Changed
