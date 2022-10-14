@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.29.1] - 2022-10-14
+
 ### Changed
 
 - Enable tcp forwarding for sshd on bastion.
@@ -424,7 +426,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.29.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.29.1...HEAD
+[0.29.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.29.0...v0.29.1
 [0.29.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.28.0...v0.29.0
 [0.28.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.27.1...v0.28.0
 [0.27.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.27.0...v0.27.1
