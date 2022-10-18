@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to Kubernetes 1.22.15
+- Updated to using Ubuntu 22.04 as base OS
+
 ## [0.29.1] - 2022-10-14
 
 ### Changed
@@ -45,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix helm upgrade failing with a map cycle while using the default values. 
+- Fix helm upgrade failing with a map cycle while using the default values.
 
 ### Changed
 
