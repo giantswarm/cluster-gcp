@@ -153,6 +153,8 @@ spec:
       kind: GCPMachineTemplate
       name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "global" .) }}
   kubeadmConfigSpec: {{ include "controlplane-kubeadmcontrolplane-spec" $ | nindent 4 }}
+  replicas: 3
+  version: {{ .Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: GCPMachineTemplate
