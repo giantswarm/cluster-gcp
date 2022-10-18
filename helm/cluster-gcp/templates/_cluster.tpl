@@ -16,7 +16,7 @@ spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: KubeadmControlPlane
-    name: {{ include "resource.default.name" $ }}
+    name: {{ include "resource.default.name" $ }}-{{ include "hash" (dict "data" (include "controlplane-kubeadmcontrolplane-spec" $) "global" .) }}
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
     kind: GCPCluster
