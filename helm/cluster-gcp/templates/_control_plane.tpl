@@ -134,14 +134,13 @@ users:
 {{- include "sshUsers" . | nindent 4 }}
 {{- end }}
 
-
 {{- define "control-plane" }}
 apiVersion: controlplane.cluster.x-k8s.io/v1beta1
 kind: KubeadmControlPlane
 metadata:
   labels:
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-{{ include "hash" (dict "data" (include "controlplane-kubeadmcontrolplane-spec" $) "global" .) }}
+  name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-kubeadmcontrolplane-spec" $) "global" .) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   machineTemplate:
@@ -151,7 +150,7 @@ spec:
     infrastructureRef:
       apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
       kind: GCPMachineTemplate
-      name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "global" .) }}
+      name: {{ include "resource.default.name" $ }}-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "machine-data" (include "controlplane-kubeadmcontrolplane-spec" $) "global" .) }}
   kubeadmConfigSpec: {{ include "controlplane-kubeadmcontrolplane-spec" $ | nindent 4 }}
   replicas: 3
   version: {{ .Values.kubernetesVersion }}
@@ -162,7 +161,7 @@ metadata:
   labels:
     cluster.x-k8s.io/role: control-plane
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "global" .) }}
+  name: {{ include "resource.default.name" $ }}-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "machine-data" (include "controlplane-kubeadmcontrolplane-spec" $) "global" .) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   template:
