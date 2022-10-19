@@ -140,7 +140,7 @@ kind: KubeadmControlPlane
 metadata:
   labels:
     {{- include "labels.common" $ | nindent 4 }}
-  name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-kubeadmcontrolplane-spec" $) "global" .) }}
+  name: {{ include "resource.default.name" $ }}-{{ include "hash" (dict "data" (include "controlplane-kubeadmcontrolplane-spec" $) "global" .) }}
   namespace: {{ $.Release.Namespace }}
 spec:
   machineTemplate:
