@@ -6,7 +6,7 @@ readonly SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 kubectl apply -f "${SCRIPT_DIR}/pod-test.yaml"
 
 # We need to wait until the job is actually created, before we can 'kubectl wait' for it.
-sleep 10
+sleep 15
 
 # Check that everything is as expected.
 kubectl -n kube-system wait --timeout 100s --for condition=complete job/coredns-adopter

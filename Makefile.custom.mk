@@ -12,7 +12,7 @@ render: architect
 # Instead we template the chart and apply ignoring errors.
 .PHONY: render
 deploy-rendered-chart: render
-	helm template $(shell pwd)/helm/rendered/cluster-gcp --set gcp.project="test-project" --set organization="test" | kubectl apply --validate=false -f - || true
+	helm upgrade --install test $(shell pwd)/helm/rendered/cluster-gcp --set gcp.project="test-project" --set organization="test"
 
 .PHONY: create-acceptance-cluster
 create-acceptance-cluster: kind
@@ -20,8 +20,12 @@ create-acceptance-cluster: kind
 
 .PHONY: test-acceptance
 test-acceptance: KUBECONFIG=$(HOME)/.kube/$(CLUSTER).yml
-test-acceptance: create-acceptance-cluster deploy-rendered-chart ## Run acceptance tests
+test-acceptance: create-acceptance-cluster install-cluster-api deploy-rendered-chart ## Run acceptance tests
 	./scripts/test.sh
+
+.PHONY: install-cluster-api
+install-cluster-api: clusterctl
+	EXP_CLUSTER_RESOURCE_SET=true GCP_B64ENCODED_CREDENTIALS="" $(CLUSTERCTL) init --kubeconfig "$(KUBECONFIG)" --infrastructure=gcp --wait-providers || true
 
 KIND = $(shell pwd)/bin/kind
 .PHONY: kind
@@ -60,3 +64,10 @@ update-chart-deps: ## Update chart dependencies to latest (matching) version
 	sed -i.bk 's/version: \[\[ .Version \]\]/version: 1/' Chart.yaml && \
 	helm dependency update && \
 	mv Chart.yaml.bk Chart.yaml
+
+CLUSTERCTL = $(shell pwd)/bin/clusterctl
+.PHONY: clusterctl
+clusterctl: ## Download clusterctl locally if necessary.
+	$(eval LATEST_RELEASE = $(shell curl -s https://api.github.com/repos/kubernetes-sigs/cluster-api/releases/latest | jq -r '.tag_name'))
+	curl -sL "https://github.com/kubernetes-sigs/cluster-api/releases/download/$(LATEST_RELEASE)/clusterctl-linux-amd64" -o $(CLUSTERCTL)
+	chmod +x $(CLUSTERCTL)

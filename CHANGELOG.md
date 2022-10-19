@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.30.1] - 2022-10-19
+
+### Changed
+
+- Updated cluster-shaerd to v0.6.3
+
+## [0.30.0] - 2022-10-18
+
+### Changed
+
+- Updated to Kubernetes 1.22.15
+- Updated to using Ubuntu 22.04 as base OS
+
+## [0.29.1] - 2022-10-14
+
+### Changed
+
+- Enable tcp forwarding for sshd on bastion.
+
 ## [0.29.0] - 2022-10-10
 
 ### Changed
@@ -39,7 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix helm upgrade failing with a map cycle while using the default values. 
+- Fix helm upgrade failing with a map cycle while using the default values.
 
 ### Changed
 
@@ -420,7 +439,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.29.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.30.1...HEAD
+[0.30.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.30.0...v0.30.1
+[0.30.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.29.1...v0.30.0
+[0.29.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.29.0...v0.29.1
 [0.29.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.28.0...v0.29.0
 [0.28.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.27.1...v0.28.0
 [0.27.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.27.0...v0.27.1
