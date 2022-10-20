@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: coredns-adapter-test-pod
+  name: cluster-shared-test-pod
   namespace: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -16,7 +16,7 @@ subjects:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: coredns-adapter-test-pod
+  name: cluster-shared-test-pod
   namespace: default
 spec:
   serviceAccountName: default
@@ -42,5 +42,5 @@ spec:
   volumes:
     - name: configmap-manifests
       configMap:
-        name: test-coredns
+        name: test-psps
   restartPolicy: Never
