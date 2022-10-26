@@ -11,6 +11,6 @@ restrictions:
     - gcp
 dependencies:
 - name: cluster-shared
-  version: ">0.4.0"
+  version: "0.6.3"
   repository: "https://giantswarm.github.io/cluster-catalog"
 icon: https://s.giantswarm.io/app-icons/gcp/1/light.svg
