@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.31.0] - 2022-10-27
+
 ### Changed
 
 - Make `kubeadm` skip the phase where it installs `coredns` as it will be installed by as a default app.
@@ -445,7 +447,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.30.2...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.31.0...HEAD
+[0.31.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.30.2...v0.31.0
 [0.30.2]: https://github.com/giantswarm/cluster-gcp/compare/v0.30.1...v0.30.2
 [0.30.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.30.0...v0.30.1
 [0.30.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.29.1...v0.30.0
