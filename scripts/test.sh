@@ -8,17 +8,12 @@ kubectl apply -f "${SCRIPT_DIR}/pod-test.yaml"
 # We need to wait until the job is actually created, before we can 'kubectl wait' for it.
 sleep 15
 
-# Check that everything is as expected.
-kubectl -n kube-system wait --timeout 100s --for condition=complete job/coredns-adopter
-kubectl -n kube-system wait --timeout 1s --for condition=available deploy/coredns-workers
-
-if [[ ! $(kubectl get svc -n kube-system coredns) ]]; then
-  echo "Missing coredns Service"
+if [[ ! $(kubectl get psp privileged) ]]; then
+  echo "Missing privileged PodSecurityPolicy"
   exit 1
 fi
-
-if [[ ! $(kubectl get job -n kube-system coredns-adopter -o json | jq '.status.succeeded') ]]; then
-  echo "coredns-adopter job is not marked as succeeded"
+if [[ ! $(kubectl get psp restricted) ]]; then
+  echo "Missing restricted PodSecurityPolicy"
   exit 1
 fi
 
