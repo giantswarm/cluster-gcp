@@ -24,7 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Update [cluster-shared](https://github.com/giantswarm/cluster-shared) to v0.6.3.
-- Several changes to the `make` targets.
 
 ## [0.30.0] - 2022-10-18
 
