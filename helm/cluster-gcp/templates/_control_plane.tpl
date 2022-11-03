@@ -152,7 +152,7 @@ spec:
     users:
     {{- include "sshUsers" . | nindent 4 }}
   replicas: 3
-  version: {{ .Values.kubernetesVersion }}
+  version: v{{ trimPrefix "v" .Values.kubernetesVersion }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: GCPMachineTemplate
