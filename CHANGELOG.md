@@ -17,15 +17,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Make `kubeadm` skip the phase where it installs `coredns` as it will be installed by as a default app.
+- Make `kubeadm` skip the phase where it installs `coredns`, as it will be installed as a default app.
 
 ## [0.30.2] - 2022-10-25
+
+### Fixed
+
+- Fix update [cluster-shared](https://github.com/giantswarm/cluster-shared) to v0.6.3.
 
 ## [0.30.1] - 2022-10-19
 
 ### Changed
 
-- Updated cluster-shaerd to v0.6.3
+- Update [cluster-shared](https://github.com/giantswarm/cluster-shared) to v0.6.3.
 
 ## [0.30.0] - 2022-10-18
 
