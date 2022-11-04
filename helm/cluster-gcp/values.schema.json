@@ -37,6 +37,9 @@
                 "containerdVolumeSizeGB": {
                     "type": "integer"
                 },
+                "customNodeTaints": {
+                    "type": "array"
+                },
                 "etcd": {
                     "type": "object",
                     "properties": {
@@ -125,6 +128,9 @@
                         "type": "integer"
                     },
                     "customNodeLabels": {
+                        "type": "array"
+                    },
+                    "customNodeTaints": {
                         "type": "array"
                     },
                     "failureDomain": {

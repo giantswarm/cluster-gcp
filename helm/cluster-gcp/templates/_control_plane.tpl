@@ -138,12 +138,32 @@ spec:
           node-ip: '{{ `{{ ds.meta_data.local_ipv4 }}` }}'
           v: "2"
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+        {{- if .Values.controlPlane.customNodeTaints }}
+        {{- if (gt (len .Values.controlPlane.customNodeTaints) 0) }}
+        taints:
+        {{- range .Values.controlPlane.customNodeTaints }}
+        - key: {{ .key | quote }}
+          value: {{ .value | quote }}
+          effect: {{ .effect | quote }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
     joinConfiguration:
       discovery: {}
       nodeRegistration:
         kubeletExtraArgs:
           cloud-provider: gce
         name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+        {{- if .Values.controlPlane.customNodeTaints }}
+        {{- if (gt (len .Values.controlPlane.customNodeTaints) 0) }}
+        taints:
+        {{- range .Values.controlPlane.customNodeTaints }}
+        - key: {{ .key | quote }}
+          value: {{ .value | quote }}
+          effect: {{ .effect | quote }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
     preKubeadmCommands:
     - /bin/bash /opt/init-disks.sh
     - /bin/bash /etc/gs-kube-proxy-patch.sh
