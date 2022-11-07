@@ -43,6 +43,16 @@ joinConfiguration:
       node-labels: role=worker,giantswarm.io/machine-deployment={{ .name }}{{ if .customNodeLabels }},{{- join "," .customNodeLabels }}{{ end }}
       v: "2"
     name: '{{ `{{ ds.meta_data.local_hostname.split(".")[0] }}` }}'
+    {{- if .customNodeTaints }}
+    {{- if (gt (len .customNodeTaints) 0) }}
+    taints:
+    {{- range .customNodeTaints }}
+    - key: {{ .key | quote }}
+      value: {{ .value | quote }}
+      effect: {{ .effect | quote }}
+    {{- end }}
+    {{- end }}
+    {{- end }}
 files:
 {{ .sshFiles }}
 {{ .diskFiles }}

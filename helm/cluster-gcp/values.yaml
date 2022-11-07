@@ -69,6 +69,10 @@ machineDeployments:
   containerdVolumeSizeGB: 100
   kubeletVolumeSizeGB: 100
   customNodeLabels: []
+  customNodeTaints: []
+    # - key: ""
+    #   value: ""
+    #   effect: "" # Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
   serviceAccount:  # A service account used by workloads using google SDK on this nodepool.
     email: "default"
     scopes:
@@ -83,6 +87,10 @@ machineDeployments:
   containerdVolumeSizeGB: 100
   kubeletVolumeSizeGB: 100
   customNodeLabels: []
+  customNodeTaints: []
+    # - key: ""
+    #   value: ""
+    #   effect: "" # Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
   serviceAccount:  # A service account used by workloads using google SDK on this nodepool.
     email: "default"
     scopes:
@@ -97,6 +105,10 @@ machineDeployments:
   containerdVolumeSizeGB: 100
   kubeletVolumeSizeGB: 100
   customNodeLabels: []
+  customNodeTaints: []
+    # - key: ""
+    #   value: ""
+    #   effect: "" # Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
   serviceAccount:  # A service account used by workloads using google SDK on this nodepool.
     email: "default"
     scopes:
