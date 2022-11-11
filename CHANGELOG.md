@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Bump external-dns to latest release
+
 ## [0.33.1] - 2022-11-08
 
 ### Fixed
