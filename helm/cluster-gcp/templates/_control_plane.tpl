@@ -11,9 +11,9 @@ rootDeviceType: {{ .Values.controlPlane.rootVolume.diskType | default "pd-ssd" }
 additionalDisks:
 - deviceType: {{ .Values.controlPlane.etcdVolume.diskType | default "local-ssd" }}
   size: {{ .Values.controlPlane.etcdVolume.sizeGB | default 100 }}
-- deviceType: {{ .Values.controlPlane.containerdVolume.diskType default "pd-ssd" }}
+- deviceType: {{ .Values.controlPlane.containerdVolume.diskType | default "pd-ssd" }}
   size: {{ .Values.controlPlane.containerdVolume.sizeGB | default 100 }}
-- deviceType: {{ .Values.controlPlane.kubeletVolume.diskType default "pd-ssd" }}
+- deviceType: {{ .Values.controlPlane.kubeletVolume.diskType | default "pd-ssd" }}
   size: {{ .Values.controlPlane.kubeletVolume.sizeGB | default 100 }}
 subnet: {{ include "resource.default.name" $ }}-subnetwork
 serviceAccounts:
