@@ -6,7 +6,8 @@ Any changes to this will trigger the resource to be recreated rather than attemp
 {{- define "machinedeployment-gcpmachinetemplate-spec" -}}
 image: {{ .vmImage }}
 instanceType: {{ .instanceType | default "n2-standard-4" }}
-rootDeviceSize: {{ .rootVolumeSizeGB | default 100 }}
+rootDeviceSize: {{ .rootVolume.sizeGB | default 100 }}
+rootDeviceType: {{ .rootVolume.diskType | default "pd-ssd" }}
 {{- if .serviceAccount }}
 serviceAccounts:
   email: {{ .serviceAccount.email }}
@@ -18,10 +19,10 @@ serviceAccounts:
   - "https://www.googleapis.com/auth/compute"
 {{- end }}
 additionalDisks:
-- deviceType: pd-ssd
-  size: {{ .containerdVolumeSizeGB | default 100 }}
-- deviceType: pd-ssd
-  size: {{ .kubeletVolumeSizeGB | default 100 }}
+- deviceType: {{ .containerdVolume.diskType | default "pd-ssd" }}
+  size: {{ .containerdVolume.sizeGB | default 100 }}
+- deviceType: {{ .kubeletVolume.diskType | default "pd-ssd" }}
+  size: {{ .kubeletVolume.sizeGB | default 100 }}
 subnet: {{ .resourceDefaultName }}-subnetwork
 {{- end }}
 

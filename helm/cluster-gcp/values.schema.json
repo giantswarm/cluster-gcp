@@ -34,8 +34,16 @@
                 "apiAllowlistSubnets": {
                     "type": "string"
                 },
-                "containerdVolumeSizeGB": {
-                    "type": "integer"
+                "containerdVolume": {
+                    "type": "object",
+                    "properties": {
+                        "sizeGB": {
+                            "type": "integer"
+                        },
+                        "diskType": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "customNodeTaints": {
                     "type": "array"
@@ -51,17 +59,41 @@
                         }
                     }
                 },
-                "etcdVolumeSizeGB": {
-                    "type": "integer"
+                "etcdVolume": {
+                    "type": "object",
+                    "properties": {
+                        "sizeGB": {
+                            "type": "integer"
+                        },
+                        "diskType": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "instanceType": {
                     "type": "string"
                 },
-                "kubeletVolumeSizeGB": {
-                    "type": "integer"
+                "kubeletVolume": {
+                    "type": "object",
+                    "properties": {
+                        "sizeGB": {
+                            "type": "integer"
+                        },
+                        "diskType": {
+                            "type": "string"
+                        }
+                    }
                 },
-                "rootVolumeSizeGB": {
-                    "type": "integer"
+                "rootVolume": {
+                    "type": "object",
+                    "properties": {
+                        "sizeGB": {
+                            "type": "integer"
+                        },
+                        "diskType": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "serviceAccount": {
                     "type": "object",
@@ -124,8 +156,16 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "containerdVolumeSizeGB": {
-                        "type": "integer"
+                    "containerdVolume": {
+                        "type": "object",
+                        "properties": {
+                            "sizeGB": {
+                                "type": "integer"
+                            },
+                            "diskType": {
+                                "type": "string"
+                            }
+                        }
                     },
                     "customNodeLabels": {
                         "type": "array"
@@ -139,8 +179,16 @@
                     "instanceType": {
                         "type": "string"
                     },
-                    "kubeletVolumeSizeGB": {
-                        "type": "integer"
+                    "kubeletVolume": {
+                        "type": "object",
+                        "properties": {
+                            "sizeGB": {
+                                "type": "integer"
+                            },
+                            "diskType": {
+                                "type": "string"
+                            }
+                        }
                     },
                     "name": {
                         "type": "string"
@@ -148,8 +196,16 @@
                     "replicas": {
                         "type": "integer"
                     },
-                    "rootVolumeSizeGB": {
-                        "type": "integer"
+                    "rootVolume": {
+                        "type": "object",
+                        "properties": {
+                            "sizeGB": {
+                                "type": "integer"
+                            },
+                            "diskType": {
+                                "type": "string"
+                            }
+                        }
                     },
                     "serviceAccount": {
                         "type": "object",

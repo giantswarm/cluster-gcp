@@ -45,10 +45,18 @@ bastion:
 controlPlane:
   apiAllowlistSubnets: ""  # A comma separated list of cidrs that will have access to the kubernetes API.
   instanceType: n2-standard-4
-  rootVolumeSizeGB: 100
-  etcdVolumeSizeGB: 100
-  containerdVolumeSizeGB: 100
-  kubeletVolumeSizeGB: 100
+  rootVolume:
+    sizeGB: 100
+    diskType: "pd-ssd" # "pd-standard" is the default one, the other only supported type is "pd-ssd"
+  etcdVolume:
+    sizeGB: 100
+    diskType: "local-ssd" # Override to allow etcd more IO operations
+  containerdVolume:
+    sizeGB: 100
+    diskType: "pd-ssd" # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+  kubeletVolume:
+    sizeGB: 100
+    diskType: "pd-ssd" # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
   serviceAccount:
     email: "default"  # A service account used by the control-plane to set up LoadBalancer Services
     scopes:
@@ -65,9 +73,15 @@ machineDeployments:
   failureDomain: europe-west3-a
   instanceType: n2-standard-4
   replicas: 1
-  rootVolumeSizeGB: 100
-  containerdVolumeSizeGB: 100
-  kubeletVolumeSizeGB: 100
+  rootVolume:
+    sizeGB: 100
+    diskType: "pd-ssd" # "pd-standard" is the default one, the other only supported type is "pd-ssd"
+  containerdVolume:
+    sizeGB: 100
+    diskType: "pd-ssd" # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+  kubeletVolume:
+    sizeGB: 100
+    diskType: "pd-ssd" # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
   customNodeLabels: []
   customNodeTaints: []
     # - key: ""
