@@ -9,7 +9,7 @@ instanceType: {{ .Values.controlPlane.instanceType }}
 rootDeviceSize: {{ .Values.controlPlane.rootVolume.sizeGB | default 100 }}
 rootDeviceType: {{ .Values.controlPlane.rootVolume.diskType | default "pd-ssd" }}
 additionalDisks:
-- deviceType: {{ .Values.controlPlane.etcdVolume.diskType | default "local-ssd" }}
+- deviceType: "local-ssd"
   size: {{ .Values.controlPlane.etcdVolume.sizeGB | default 100 }}
 - deviceType: {{ .Values.controlPlane.containerdVolume.diskType | default "pd-ssd" }}
   size: {{ .Values.controlPlane.containerdVolume.sizeGB | default 100 }}
