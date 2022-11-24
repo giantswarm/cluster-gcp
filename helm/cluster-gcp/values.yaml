@@ -48,9 +48,6 @@ controlPlane:
   rootVolume:
     sizeGB: 100
     diskType: "pd-ssd"  # Defaults to "pd-standard", the other only supported type is "pd-ssd"
-  etcdVolume:
-    sizeGB: 100
-    diskType: "local-ssd"  # Override to allow etcd more IO operations
   containerdVolume:
     sizeGB: 100
     diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]

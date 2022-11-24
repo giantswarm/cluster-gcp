@@ -59,17 +59,6 @@
                         }
                     }
                 },
-                "etcdVolume": {
-                    "type": "object",
-                    "properties": {
-                        "sizeGB": {
-                            "type": "integer"
-                        },
-                        "diskType": {
-                            "type": "string"
-                        }
-                    }
-                },
                 "instanceType": {
                     "type": "string"
                 },
