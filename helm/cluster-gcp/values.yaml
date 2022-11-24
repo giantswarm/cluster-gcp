@@ -47,16 +47,16 @@ controlPlane:
   instanceType: n2-standard-4
   rootVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, the other only supported type is "pd-ssd"
+    diskType: "pd-ssd"  # Defaults to "pd-standard", the other only supported type is "pd-ssd"
   etcdVolume:
     sizeGB: 100
     diskType: "local-ssd"  # Override to allow etcd more IO operations
   containerdVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   kubeletVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   serviceAccount:
     email: "default"   # A service account used by the control-plane to set up LoadBalancer Services
     scopes:
@@ -75,13 +75,13 @@ machineDeployments:
   replicas: 1
   rootVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, the other only supported type is "pd-ssd"
+    diskType: "pd-ssd"  # Defaults to "pd-standard", the other only supported type is "pd-ssd"
   containerdVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   kubeletVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   customNodeLabels: []
   customNodeTaints: []
     # - key: ""
@@ -99,13 +99,13 @@ machineDeployments:
   replicas: 1
   rootVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, the other only supported type is "pd-ssd"
+    diskType: "pd-ssd"  # Defaults to "pd-standard", the other only supported type is "pd-ssd"
   containerdVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   kubeletVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   customNodeLabels: []
   customNodeTaints: []
     # - key: ""
@@ -123,13 +123,13 @@ machineDeployments:
   replicas: 1
   rootVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, the other only supported type is "pd-ssd"
+    diskType: "pd-ssd"  # Defaults to "pd-standard", the other only supported type is "pd-ssd"
   containerdVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   kubeletVolume:
     sizeGB: 100
-    diskType: "pd-ssd"  # "pd-standard" is the default one, other options are: ["pd-ssd"|"local-ssd"]
+    diskType: "pd-ssd"  # Defaults to "pd-standard", other options are: ["pd-ssd"|"local-ssd"]
   customNodeLabels: []
   customNodeTaints: []
     # - key: ""
