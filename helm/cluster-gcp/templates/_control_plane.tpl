@@ -10,7 +10,7 @@ rootDeviceSize: {{ .Values.controlPlane.rootVolume.sizeGB | default 100 }}
 rootDeviceType: {{ .Values.controlPlane.rootVolume.diskType | default "pd-ssd" }}
 additionalDisks:
 - deviceType: "local-ssd"
-  size: {{ .Values.controlPlane.etcdVolume.sizeGB | default 100 }}
+  size: 375  # 375 is the minimum size for a local-ssd
 - deviceType: {{ .Values.controlPlane.containerdVolume.diskType | default "pd-ssd" }}
   size: {{ .Values.controlPlane.containerdVolume.sizeGB | default 100 }}
 - deviceType: {{ .Values.controlPlane.kubeletVolume.diskType | default "pd-ssd" }}
