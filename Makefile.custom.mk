@@ -12,7 +12,7 @@ render: architect
 # Instead we template the chart and apply ignoring errors.
 .PHONY: render
 deploy-rendered-chart: render
-	helm upgrade --install test $(shell pwd)/helm/rendered/cluster-gcp --set gcp.project="test-project" --set organization="test"
+	helm upgrade --install test $(shell pwd)/helm/rendered/cluster-gcp --set gcp.project="test-project" --set organization="test" --set baseDomain="example.com"
 
 .PHONY: create-acceptance-cluster
 create-acceptance-cluster: kind
