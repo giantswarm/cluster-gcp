@@ -38,7 +38,10 @@
                     "type": "integer"
                 },
                 "customNodeTaints": {
-                    "type": "array"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/nodeTaint"
+                    }
                 },
                 "etcd": {
                     "type": "object",
@@ -131,7 +134,10 @@
                         "type": "array"
                     },
                     "customNodeTaints": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/$defs/nodeTaint"
+                        }
                     },
                     "failureDomain": {
                         "type": "string"
@@ -219,6 +225,32 @@
         },
         "vmImageBase": {
             "type": "string"
+        }
+    },
+    "$defs": {
+        "nodeTaint": {
+            "type": "object",
+            "properties": {
+                "effect": {
+                    "type": "string",
+                    "enum": [
+                        "NoSchedule",
+                        "PreferNoSchedule",
+                        "NoExecute"
+                    ]
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "effect",
+                "key",
+                "value"
+            ]
         }
     }
 }
