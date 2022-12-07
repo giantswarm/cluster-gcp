@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `customNodeTain` items schema.
+- Add `customNodeLabels` items schema.
 
 ### Changed
 

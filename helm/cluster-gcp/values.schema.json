@@ -131,7 +131,10 @@
                         "type": "integer"
                     },
                     "customNodeLabels": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+                        }
                     },
                     "customNodeTaints": {
                         "type": "array",
