@@ -26,7 +26,7 @@
             "type": "string"
         },
         "clusterName": {
-            "type": "string"
+            "$ref": "https://schema.giantswarm.io/clustername/v0.0.1"
         },
         "controlPlane": {
             "type": "object",
