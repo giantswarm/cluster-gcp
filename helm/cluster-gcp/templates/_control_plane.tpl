@@ -6,14 +6,15 @@ Any changes to this will trigger the resource to be recreated rather than attemp
 {{- define "controlplane-gcpmachinetemplate-spec" -}}
 image: {{ include "vmImage" $ }}
 instanceType: {{ .Values.controlPlane.instanceType }}
-rootDeviceSize: {{ .Values.controlPlane.rootVolumeSizeGB }}
+rootDeviceSize: {{ .Values.controlPlane.rootVolume.sizeGB | default 100 }}
+rootDeviceType: {{ .Values.controlPlane.rootVolume.diskType | default "pd-ssd" }}
 additionalDisks:
-- deviceType: pd-ssd
-  size: {{ .Values.controlPlane.etcdVolumeSizeGB }}
-- deviceType: pd-ssd
-  size: {{ .Values.controlPlane.containerdVolumeSizeGB }}
-- deviceType: pd-ssd
-  size: {{ .Values.controlPlane.kubeletVolumeSizeGB }}
+- deviceType: "local-ssd"
+  size: 375  # 375 is the minimum size for a local-ssd
+- deviceType: {{ .Values.controlPlane.containerdVolume.diskType | default "pd-ssd" }}
+  size: {{ .Values.controlPlane.containerdVolume.sizeGB | default 100 }}
+- deviceType: {{ .Values.controlPlane.kubeletVolume.diskType | default "pd-ssd" }}
+  size: {{ .Values.controlPlane.kubeletVolume.sizeGB | default 100 }}
 subnet: {{ include "resource.default.name" $ }}-subnetwork
 serviceAccounts:
   email: {{ .Values.controlPlane.serviceAccount.email }}

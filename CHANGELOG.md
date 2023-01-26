@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Bump external-dns to latest release
+- Allow to specify the disk type for all volumes (root, etcd, kubelet, containerd) in the machine templates
 - Make `baseDomain` a required value.
 
 ## [0.33.1] - 2022-11-08
