@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.34.0] - 2023-01-27
+
 ### Added
 
 - Add `customNodeTain` items schema.
@@ -485,7 +487,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.33.1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-gcp/compare/v0.34.0...HEAD
+[0.34.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.33.1...v0.34.0
 [0.33.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.33.0...v0.33.1
 [0.33.0]: https://github.com/giantswarm/cluster-gcp/compare/v0.32.1...v0.33.0
 [0.32.1]: https://github.com/giantswarm/cluster-gcp/compare/v0.32.0...v0.32.1
