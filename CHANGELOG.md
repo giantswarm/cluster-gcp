@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Rollback kubernetes version, as upgrade is broken.
+- Use Giantswarm repository for Kubernetes images.
+- Bump Kubernetes to v1.23.16
 
 ## [0.34.0] - 2023-01-27
 
