@@ -113,7 +113,6 @@ spec:
           bind-address: 0.0.0.0
       etcd:
         local:
-          imageRepository: {{.Values.controlPlane.etcd.imageRepository}}
           imageTag: {{.Values.controlPlane.etcd.imageTag}}
           extraArgs:
             listen-metrics-urls: "http://0.0.0.0:2381"
