@@ -40,6 +40,8 @@ spec:
       name: {{ include "resource.default.name" $ }}-control-plane-{{ include "hash" (dict "data" (include "controlplane-gcpmachinetemplate-spec" $) "global" .) }}
   kubeadmConfigSpec:
     clusterConfiguration:
+      # Avoid accessibility issues (e.g. on private clusters) and potential future rate limits for the default `registry.k8s.io`
+      imageRepository: docker.io/giantswarm
       apiServer:
         timeoutForControlPlane: 20m
         certSANs:
@@ -111,7 +113,6 @@ spec:
           bind-address: 0.0.0.0
       etcd:
         local:
-          imageRepository: {{.Values.controlPlane.etcd.imageRepository}}
           imageTag: {{.Values.controlPlane.etcd.imageTag}}
           extraArgs:
             listen-metrics-urls: "http://0.0.0.0:2381"

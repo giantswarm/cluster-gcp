@@ -2,7 +2,7 @@ clusterName: "test"  # Name of cluster. Used as base name for all cluster resour
 clusterDescription: ""  # Cluster description used in metadata.
 organization: ""  # Organization in which to create the cluster.
 baseDomain: ""  # Customer base domain, generally of the form "<customer codename>.gigantic.io".
-kubernetesVersion: 1.23.13
+kubernetesVersion: 1.23.16
 ubuntuImageVersion: "2204"
 
 vmImageBase: "https://www.googleapis.com/compute/v1/projects/giantswarm-vm-images/global/images/"
@@ -54,7 +54,6 @@ controlPlane:
     scopes:
     - "https://www.googleapis.com/auth/compute"
   etcd:
-    imageRepository: "docker.io/giantswarm"
     imageTag: 3.5.4-0-k8s
 
 # machineDeployments lets you configure the different nodepools that will be created.
