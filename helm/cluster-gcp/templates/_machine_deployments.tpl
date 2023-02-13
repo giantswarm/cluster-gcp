@@ -57,6 +57,7 @@ files:
 {{ .sshFiles }}
 {{ .diskFiles }}
 preKubeadmCommands:
+{{- include "prepare-varLibKubelet-Dir" . | nindent 0 }}
 - /bin/bash /opt/init-disks.sh
 postKubeadmCommands:
 {{ .sshPostKubeadmCommands }}

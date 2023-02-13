@@ -166,6 +166,7 @@ spec:
         {{- end }}
         {{- end }}
     preKubeadmCommands:
+    {{- include "prepare-varLibKubelet-Dir" . | nindent 4 }}
     - /bin/bash /opt/init-disks.sh
     - /bin/bash /etc/gs-kube-proxy-patch.sh
     postKubeadmCommands:

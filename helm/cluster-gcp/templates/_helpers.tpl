@@ -116,6 +116,10 @@ subnetwork-name={{ include "resource.default.name" $ }}-subnetwork
 {{ .Values.vmImageBase }}cluster-api-ubuntu-{{ .Values.ubuntuImageVersion }}-v{{ .Values.kubernetesVersion | replace "." "-" }}-gs
 {{- end -}}
 
+{{- define "prepare-varLibKubelet-Dir" -}}
+- /bin/test ! -d /var/lib/kubelet && (/bin/mkdir -p /var/lib/kubelet && /bin/chmod 0750 /var/lib/kubelet)
+{{- end -}}
+
 {{/*
 Hash function based on data provided
 Expects two arguments (as a `dict`) E.g.
