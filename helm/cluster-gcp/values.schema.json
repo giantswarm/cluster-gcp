@@ -1,12 +1,36 @@
 {
+    "$defs": {
+        "nodeTaint": {
+            "properties": {
+                "effect": {
+                    "enum": [
+                        "NoSchedule",
+                        "PreferNoSchedule",
+                        "NoExecute"
+                    ],
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "effect",
+                "key",
+                "value"
+            ],
+            "type": "object"
+        }
+    },
     "$schema": "http://json-schema.org/schema#",
-    "type": "object",
     "properties": {
         "baseDomain": {
             "type": "string"
         },
         "bastion": {
-            "type": "object",
             "properties": {
                 "allowlistSubnets": {
                     "type": "string"
@@ -20,7 +44,8 @@
                 "replicas": {
                     "type": "integer"
                 }
-            }
+            },
+            "type": "object"
         },
         "clusterDescription": {
             "type": "string"
@@ -29,7 +54,6 @@
             "type": "string"
         },
         "controlPlane": {
-            "type": "object",
             "properties": {
                 "apiAllowlistSubnets": {
                     "type": "string"
@@ -38,18 +62,18 @@
                     "type": "integer"
                 },
                 "customNodeTaints": {
-                    "type": "array",
                     "items": {
                         "$ref": "#/$defs/nodeTaint"
-                    }
+                    },
+                    "type": "array"
                 },
                 "etcd": {
-                    "type": "object",
                     "properties": {
                         "imageTag": {
                             "type": "string"
                         }
-                    }
+                    },
+                    "type": "object"
                 },
                 "etcdVolumeSizeGB": {
                     "type": "integer"
@@ -64,29 +88,29 @@
                     "type": "integer"
                 },
                 "serviceAccount": {
-                    "type": "object",
                     "properties": {
                         "email": {
                             "type": "string"
                         },
                         "scopes": {
-                            "type": "array",
                             "items": {
                                 "type": "string"
-                            }
+                            },
+                            "type": "array"
                         }
-                    }
+                    },
+                    "type": "object"
                 }
-            }
+            },
+            "type": "object"
         },
         "gcp": {
-            "type": "object",
             "properties": {
                 "failureDomains": {
-                    "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "type": "array"
                 },
                 "project": {
                     "type": "string"
@@ -94,7 +118,8 @@
                 "region": {
                     "type": "string"
                 }
-            }
+            },
+            "type": "object"
         },
         "hashSalt": {
             "type": "string"
@@ -103,7 +128,6 @@
             "type": "boolean"
         },
         "kubectlImage": {
-            "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
@@ -114,30 +138,29 @@
                 "tag": {
                     "type": "string"
                 }
-            }
+            },
+            "type": "object"
         },
         "kubernetesVersion": {
             "type": "string"
         },
         "machineDeployments": {
-            "type": "array",
             "items": {
-                "type": "object",
                 "properties": {
                     "containerdVolumeSizeGB": {
                         "type": "integer"
                     },
                     "customNodeLabels": {
-                        "type": "array",
                         "items": {
                             "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
-                        }
+                        },
+                        "type": "array"
                     },
                     "customNodeTaints": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/$defs/nodeTaint"
-                        }
+                        },
+                        "type": "array"
                     },
                     "failureDomain": {
                         "type": "string"
@@ -158,33 +181,34 @@
                         "type": "integer"
                     },
                     "serviceAccount": {
-                        "type": "object",
                         "properties": {
                             "email": {
                                 "type": "string"
                             },
                             "scopes": {
-                                "type": "array",
                                 "items": {
                                     "type": "string"
-                                }
+                                },
+                                "type": "array"
                             }
-                        }
+                        },
+                        "type": "object"
                     }
-                }
-            }
+                },
+                "type": "object"
+            },
+            "type": "array"
         },
         "network": {
-            "type": "object",
             "properties": {
                 "nodeSubnetCidr": {
                     "type": "string"
                 },
                 "podCidr": {
-                    "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "type": "array"
                 },
                 "proxySubnetCidr": {
                     "type": "string"
@@ -192,10 +216,10 @@
                 "serviceCIDR": {
                     "type": "string"
                 }
-            }
+            },
+            "type": "object"
         },
         "oidc": {
-            "type": "object",
             "properties": {
                 "caFile": {
                     "type": "string"
@@ -212,7 +236,8 @@
                 "usernameClaim": {
                     "type": "string"
                 }
-            }
+            },
+            "type": "object"
         },
         "organization": {
             "type": "string"
@@ -227,30 +252,5 @@
             "type": "string"
         }
     },
-    "$defs": {
-        "nodeTaint": {
-            "type": "object",
-            "properties": {
-                "effect": {
-                    "type": "string",
-                    "enum": [
-                        "NoSchedule",
-                        "PreferNoSchedule",
-                        "NoExecute"
-                    ]
-                },
-                "key": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "effect",
-                "key",
-                "value"
-            ]
-        }
-    }
+    "type": "object"
 }
