@@ -2,3 +2,4 @@ organization: "test"
 gcp:
   project: "test-project"
 baseDomain: example.com
+servicePriority: lowest
