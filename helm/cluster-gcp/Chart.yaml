@@ -4,7 +4,7 @@ description: A helm chart for creating Cluster API clusters with the GCP infrast
 type: application
 version: [[ .Version ]]
 annotations:
-  application.giantswarm.io/team: "hydra"
+  application.giantswarm.io/team: "phoenix"
   application.giantswarm.io/app-type: "cluster"
 restrictions:
   compatibleProviders:
