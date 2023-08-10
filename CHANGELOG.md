@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Set `/var/lib/kubelet` permissions to `0750` to fix `node-exporter` issue.
+- Changed team annotation to phoenix from hydra
+
 
 ## [0.35.0] - 2023-01-30
 
